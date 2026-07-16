@@ -1,9 +1,30 @@
 {
     "cSpell.words": [
+        "addbibresource",
+        "aspectratio",
         "autograded",
         "autograder",
         "autograding",
-        "elif"
+        "beamer",
+        "biber",
+        "biblatex",
+        "citecolor",
+        "classoption",
+        "colorlinks",
+        "elif",
+        "etamustudent",
+        "filecolor",
+        "gaddis",
+        "Harter",
+        "hypersetup",
+        "includegraphics",
+        "linkcolor",
+        "overpic",
+        "parencite",
+        "prewritten",
+        "printbibliography",
+        "urlcolor",
+        "usepackage"
     ],
     "python.testing.unittestArgs": [
         "-v",

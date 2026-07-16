@@ -1,6 +1,6 @@
 ---
 title: "Application Program Development"
-subtitle: "Ch 01: Introduction to Computers and Programming"
+subtitle: "Ch 01: How a Program Works"
 author: Derek Harter
 date:  Summer 2026
 theme: Madrid
@@ -188,6 +188,17 @@ int main() {
 \caption{Executing a high-level program with an interpreter \parencite[pg.41]{gaddis-2021}}
 \end{figure}
 
+# Summary
+
+- A CPU only understands machine instructions (sequence of binary numbers)
+- The CPU runs machine instructions by fetching, decoding and executing one at a time
+- Machine language is impractical for people to write directly, can use Assembly
+- Most applications will be written in a high-level language, for speed and simplicity
+- A high-level language is made of keywords and operators, with a defined Syntax
+  in order to create statements in the high-level language
+- A high-level language has to be translated to machine language
+  - Either it is compiled once to a machine language executable
+  - Or an interpreter is used to interpret and translate statements
 
 # References
 \tiny

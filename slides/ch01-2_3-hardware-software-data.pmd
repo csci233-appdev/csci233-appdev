@@ -154,6 +154,18 @@ header-includes:
 - Digital music and audio is composed of digitized sound samples
   - Each sound level sample is converted to a binary number
 
+
+# Summary
+
+- An application program is a piece of software, created by programmers
+- You should be familiar with the basic hardware components of a computer
+  - CPU, RAM, secondary storage and I/O devices
+- All data in a computer is stored as a sequence of 0s and 1s
+  - A byte is a fundamental unit of computer data
+  - Can use multiple bytes to represent larger numbers
+- Not just numbers, can use different standards to digitally represent
+  images, video, sound, and other types of data.
+
 # References
 \tiny
 \printbibliography

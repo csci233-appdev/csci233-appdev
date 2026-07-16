@@ -1,6 +1,6 @@
 ---
 title: "Application Program Development"
-subtitle: "Ch 01: Introduction to Computers and Programming"
+subtitle: "Ch 01: Using Python"
 author: Derek Harter
 date:  Summer 2026
 theme: Madrid
@@ -30,7 +30,8 @@ header-includes:
 
 # Using Python
 
-- Python must be installed and configured prior to use (see Getting Started)
+- Python must be installed and configured prior to use
+  - See [Getting Started with Python and Git for Class Assignments](https://github.com/etamu-class/python-git)
 - Python interpreter can be used in two modes:
   - **Interactive mode**: enter statements on keyboard
   - **Script mode**: save statements in Python script (file) and pass to interpreter
@@ -89,6 +90,23 @@ Hello Schrodinger!
   - Has built-in text editor with features designed to help write
     Python programs
   - A basic IDE, but recommend using VSCode, PyCharm
+
+# Class Resources Repository
+
+The class resources for these videos, slides and other materials
+can be found here:
+
+[Class Resources Repository for CSci 233 Applications Program Development](https://github.com/csci233-appdev/csci233-appdev)
+
+
+# Summary
+
+- You must install a Python distribution (V3)
+- Python interpreter can be used in two modes
+  1. Interactive mode: try things out and learn 
+  2. Script mode: save statements in a file and run
+- The IDLE programming environment is available to use
+  - Though consider VSCode or PyCharm
 
 # References
 \tiny

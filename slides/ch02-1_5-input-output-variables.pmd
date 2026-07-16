@@ -1,6 +1,6 @@
 ---
 title: "Application Program Development"
-subtitle: "Ch 02: Input, Processing and Output"
+subtitle: "Ch 02: `print()` Output, Comments and Variables"
 author: Derek Harter
 date:  Summer 2026
 theme: Madrid
@@ -97,7 +97,7 @@ Display the gross pay
 
 # Input, Processing and Output
 
-- Typically computer performs three-step process
+- Typically application performs three-step process
   1. Receive input
      - Input: any data that the program receives while it is running
   2. Perform some process on the input
@@ -191,7 +191,7 @@ Asheville, NC 28899
   - General format `variable = expression`
 - In assignment statement, variable receiving value must be on left side
 - A variable can be passed as an argument to a function
-  - Variable name should not be enclosed in quoate marks
+  - Variable name should not be enclosed in quote marks
 - You can only use a variable if a value is assigned to it.
 
 
@@ -246,6 +246,19 @@ I am staying in room number 503
   - No decimal point considered `int`, otherwise considered `float`
 - Some operations behave differently depending on data type
 
+
+# Summary
+
+- Typically applications perform 3 step process input - process - output
+- Output to terminal standard out can be done with `print()` function
+  - Functions are prewritten reusable code that have input arguments and
+    can return a result
+- Specify string literals using single `'` or double `"`
+- Comment your code for human readers and maintainers
+- A **variable** is a name that references a stored value in computer memory
+  - assign (and reassign) values to variables
+  - pass variables as arguments to function
+  - variables have a type determine when assigned, `str` `int` `float`  
 
 # References
 \tiny
