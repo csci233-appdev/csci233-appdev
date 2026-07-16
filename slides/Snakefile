@@ -9,7 +9,8 @@ PANDOC_LATEX_ARGS="-s -N"
 rule all:
 	input:  ["ch01-2_3-hardware-software-data.pdf", \
 		     "ch01-4-how-a-program-works.pdf", \
-			 "ch01-5-using-python.pdf"]
+			 "ch01-5-using-python.pdf", \
+			 "ch02-1_5-input-output-variables.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"
