@@ -1,0 +1,194 @@
+---
+title: "Application Program Development"
+subtitle: "Introduction to Computers and Programming"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# How a Program Works
+
+## Concept
+
+A computer's CPU can only understand instructions that are written
+in machine language.  Because people find it very difficult to write
+entire programs in machine language, other programming languages have
+been invented.
+
+# How a Program Works (1 of 2)
+
+- CPU designed to perform simple operations on pieces of data
+  - reading data, adding, subtracting, multiplying and dividing numbers
+  - Understands instructions written in machine language (instruction set)
+    - Each brand of CPU has its own instruction set
+  - Instructions are simple, to carry out meaningful calculation, CPU must
+    perform many operations
+
+- Program must be copied from secondary memory to RAM each time CPU executes it
+- CPU executes program in cycle
+  - **Fetch**: read the next instruction from RAM into CPU
+  - **Decode**: CPU decodes fetched instruction to determine operation to perform
+  - **Execute**: perform the operation
+
+# How a Program Works (2 of 2)
+
+\begin{figure}
+\includegraphics[scale=0.66]{figures/ch01-fig-1-16-fetch-decode-execute}
+\label{fig:ch01-fig-1-16-fetch-decode-execute}
+\caption{The fetch-decode-execute cycle \parencite[pg.37]{gaddis-2021}}
+\end{figure}
+
+# From Machine Language to Assembly Language
+
+- Impractical for people to write in machine language
+- **Assembly language**: uses words (mnemonics) for instructions instead
+  of binary numbers
+  - Easier for programmers to work with
+- **Assembler**: translates assembly language to machine language for execution
+  by CPU
+
+## x86 Assembly Example
+\tiny
+```asm
+section .data
+    msg db 'Hello, World!', 0xA  ; Message string with newline
+    len equ $ - msg              ; Length of the string
+section .text
+    global _start
+_start:
+    mov eax, 4          ; System call number for sys_write
+    mov ebx, 1          ; File descriptor (stdout)
+    mov ecx, msg        ; Pointer to the message
+    mov edx, len        ; Length of the message
+    int 0x80            ; Call kernel
+    mov eax, 1          ; System call number for sys_exit
+    xor ebx, ebx        ; Exit code 0
+    int 0x80            ; Call kernel
+```
+
+# High-Level Languages
+
+- **Low-level language**: close in nature to machine language
+  - Example: assembly language
+- **Medium-level** **system language**: a "high-level" language, but
+  still relatively directly translatable to assembly for different
+  architectures
+- **High-level language**: allows simple create of powerful and
+  complex programs
+  - No need to know how CPU works or write large number of instructions
+  - More intuitive to understand
+
+## C language Example
+
+\tiny
+```c
+#include <stdio.h>
+int main() {
+    int n, i;
+    unsigned long long fact = 1;
+    printf("Enter an integer: ");
+    scanf("%d", &n);
+
+    // shows error if the user enters a negative integer
+    if (n < 0)
+        printf("Error! Factorial of a negative number doesn't exist.");
+    else {
+        for (i = 1; i <= n; ++i) {
+            fact *= i;
+        }
+        printf("Factorial of %d = %llu", n, fact);
+    }
+
+    return 0;
+}
+```
+
+# Keywords, Operators and Syntax: an Overview
+
+::: columns
+
+:::: {.column width=50%}
+
+- **Keywords**: predefined words used to write program in high-level language
+  - Each keyword has specific meaning
+- **Operators**: perform operations on data
+  - Example: math operators to perform arithmetic
+- **Syntax**: set of rules to be followed when writing program
+- **Statement**: individual instruction used in high-level language
+
+::::
+
+:::: {.column width=50%}
+
+## The Python keywords
+
+|        |          |         |          |        |
+| ------ | -------- | ------- | -------- | ------ |
+| and    | continue | finally | is       | raise  |
+| as     | def      | for     | lambda   | return |
+| assert | del      | from    | None     | True   |
+| async  | elif     | global  | nonlocal | try    |
+| await  | else     | if      | not      | while  |
+| break  | except   | import  | or       | with   |
+| class  | False    | in      | pass     | yield  |
+
+::::
+
+:::
+
+# Compilers and Interpreters (1 of 3)
+
+- Programs written in high-level languages must be translated into machine language
+  to be executed
+- **Compiler**: translates high-level language program into separate
+  machine language program
+  - Machine language program can be executed at any time
+- **Interpreter**: translates and executes instructions in high-level language programs
+  - Used by Python language
+  - Interprets one instruction at a time
+  - No separate machine language program
+- **Source code**: statements written by a programmer
+  - **Syntax error**: prevents code from being translated 
+
+# Compilers and Interpreters (2 of 3)
+
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch01-fig-1-18-compiler}
+\label{fig:ch01-fig-1-18-compiler}
+\caption{Compiling a high-level program \parencite[pg.40]{gaddis-2021}}
+\end{figure}
+
+# Compilers and Interpreters (3 of 3)
+
+\begin{figure}
+\includegraphics[scale=0.30]{figures/ch01-fig-1-19-interpreter}
+\label{fig:ch01-fig-1-19-interpreter}
+\caption{Executing a high-level program with an interpreter \parencite[pg.41]{gaddis-2021}}
+\end{figure}
+
+
+# References
+\tiny
+\printbibliography

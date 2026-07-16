@@ -1,0 +1,95 @@
+---
+title: "Application Program Development"
+subtitle: "Introduction to Computers and Programming"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Using Python
+
+- Python must be installed and configured prior to use (see Getting Started)
+- Python interpreter can be used in two modes:
+  - **Interactive mode**: enter statements on keyboard
+  - **Script mode**: save statements in Python script (file) and pass to interpreter
+  
+## Concept
+
+The Python interpreter can run Python programs that are saved
+in files or interactively execute Python statements that
+are typed at the keyboard.  Python comes with a program named IDLE
+that simplifies the process of writing, executing and testing
+programs.
+
+
+# Interactive Mode
+
+- When you start Python in interactive move, you will see a prompt
+  - Indicates the interpreter is waiting for a Python statement
+    to be typed
+  - Prompt reappears after previous statement is executed
+  - Error message displayed if you incorrectly type a statement
+- Good way to learn new parts of Python
+  - Or test out ideas when writing / designing applications
+
+```bash
+C:\Users\etamustudent> python3
+Python 3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> name = input('What is your name? ')
+What is your name? Schrodinger
+>>> print('Hello', name)
+Hello Schrodinger
+>>>
+```
+
+# Script Mode
+
+- Statements entered in interactive mode are not saved as a program
+- To have a program use script mode
+  - Save a set of Python statements in a file
+  - The filename should have the `.py` extension
+  - To run the file, or script, type the following at the OS command line
+  
+```bash
+C:\Users\etamustudent> python3 q02.py
+What is your name? Schrodinger
+Hello Schrodinger!
+
+```
+
+# The IDLE Programming Environment
+
+- **IDLE** (Integrated Development Program): single program that
+  provides tool to write, execute and test a program (Appendix B)
+  - Automatically installed when Python language is installed
+  - Runs in interactive mode
+  - Has built-in text editor with features designed to help write
+    Python programs
+  - A basic IDE, but recommend using VSCode, PyCharm
+
+# References
+\tiny
+\printbibliography

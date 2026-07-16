@@ -1,0 +1,11 @@
+html/*
+latex/*
+output/*
+
+
+slides/*.md
+slides/*.tex
+slides/*.png
+.snakemake
+
+**/__pycache__/**

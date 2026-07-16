@@ -1,0 +1,159 @@
+---
+title: "Application Program Development"
+subtitle: "Introduction to Computers and Programming"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to Computers and Programming
+
+::: columns
+
+:::: {.column width=50%}
+
+\begin{figure}
+\includegraphics[scale=0.12]{figures/ch01-application-programs}
+\label{fig:ch01-application-programs}
+\caption{A web browser application program}
+\end{figure}
+
+::::
+
+:::: {.column width=50%}
+
+- Computers can be programmed
+  - Designed to do any job that a program tells them to
+
+- **Program**: set of instructions that a computer follows to perform
+  a task.
+  - Commonly referred to as **Software**
+
+- **Programmer**: person who can design, create and test computer
+  programs
+  - Also known as a **software developer**
+
+::::
+
+:::
+
+# Computer Hardware Components
+
+- **Hardware**: The physical devices that make up a computer
+  - Computer is a system composed of several components that all
+    work together
+
+## Typical major components:
+  - Central processing unit (CPU)
+  - Main memory (RAM)
+  - Secondary storage devices (hard drives, SSD)
+  - Input and output devices
+
+# Typical Components of a Computer System
+
+\begin{figure}
+\includegraphics[scale=0.18]{figures/ch01-fig-1-2-components-of-computer}
+\label{fig:ch01-application-programs}
+\caption{Typical components of a computer system \parencite[pg.25]{gaddis-2021}}
+\end{figure}
+
+# Computer Software
+
+- Everything a computer does is controlled by software
+
+- **Application software**: programs that make computer useful for
+  every day tasks
+  - Word processing, email, web browsers, programming editors, photo editing
+
+- **System software**: programs that control and manage basic operations
+  and resources of a computer
+  - **Operating system**: controls operations of hardware components
+  - **Utility programs**: perform specific tasks to enhance computer operation
+  - **Software development tools**: used to create, modify and test software
+
+# How Computers Store Data
+
+- All data in a computer is stored in sequences of 0s and 1s
+- **Byte**: just enough memory to store letter or small number
+  - Divided into eight bits
+  - **Bit**: electrical component that can hold positive or negative 
+    charge, on/off switch
+  - The on/off pattern of bits in a byte represents data stored in the
+    byte
+
+\begin{figure}
+\includegraphics[scale=0.26]{figures/ch01-fig-1-6-byte}
+\label{fig:ch01-fig-1-6-byte}
+\caption{Think of a byte as eight switches \parencite[pg.30]{gaddis-2021}}
+\end{figure}
+
+# Storing Numbers
+
+- Computers use binary numbering system
+- `0100 1101` = $2^6 + 2^3 + 2^2 + 2^0 = 64 + 8 + 4 + 1 = 77$
+- Byte size limits are 0 and 255
+  - 0 = `0000 0000` all bits off; 255 = `1111 1111` = all bits on
+  - To store larger number, use several bytes
+
+\begin{figure}
+\includegraphics[scale=0.40]{figures/ch01-fig-1-7-number}
+\label{fig:ch01-fig-1-6-byte}
+\caption{The number 77 stored in a byte \parencite[pg.30]{gaddis-2021}}
+\end{figure}
+
+# Storing Characters
+
+- Data stored in computer must be stored as binary number
+- Characters are converted to numeric code, interpreted as characters
+  - Basic character encoding scheme is [ASCII](https://www.asciitable.com/) Appendix C (7 bits or 128 characters)
+  - Unicode is current standard
+    - Compatible with but extends ASCII
+    - Can represent many character sets, for many other languages than English
+
+\begin{figure}
+\includegraphics[scale=0.40]{figures/ch01-fig-1-7-character}
+\label{fig:ch01-fig-1-6-byte}
+\caption{The letter A ASCII encoding in a byte \parencite[pg.30]{gaddis-2021}}
+\end{figure}
+
+# Advanced Number Storage
+
+- To store negative numbers and real (float) numbers, computers use binary numbering
+  encoding schemes
+  - Negative signed numbers encoded using [two's complement](https://en.wikipedia.org/wiki/Two's_complement)
+  - Real numbers encoded using floating-point notation [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)
+
+## Other Types of Data
+
+- **Digital** describes any device that stores data as binary numbers
+- Digital images are composed of pixels
+  - Each pixel converted to a binary number representing pixel color
+  - Video is a sequence of digital images
+- Digital music and audio is composed of digitized sound samples
+  - Each sound level sample is converted to a binary number
+
+# References
+\tiny
+\printbibliography
