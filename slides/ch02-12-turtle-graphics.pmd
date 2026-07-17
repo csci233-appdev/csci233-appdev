@@ -36,14 +36,59 @@ Turtle graphics is an interesting and easy way to learn basic
 programming concepts.  The Python turtle graphics system simulates
 a "turtle" that obeys commands to draw simple graphics.
 
-# Introduction to Turtle Graphics
+# Introduction to Turtle Graphics (1 of 3)
 
 ```{python, evaluate=False}
 import turtle
-
+turtle.forward(200)
 ```
 
+- `showturtle()` turn turtle on, make lines drawn visible
+- `forward(n)` move turtle distance `n`
+- `right(angle)` `left(angle`) turn turtle left or righ by relative angle
+- `setheading(angle)` face turtle in towards absolute heading
+- `heading()` return current heading of turtle
+- `penup()` `pendown()` raise or lower turtle pen, causes line to be drawn or not
+- `circle(radius)` draw a circle of given radius
+- `dot()` draw a dot at current turtle location
+- `pencsize(width)` change width of pencil drawing line
+- `pencolor('color')` change pen color
+- `bgcolor('color')` change drawing canvas background color
+- `reset()` erases all drawings currently in windows, reset color to `black`, reset turtle to origin
+
+# Introduction to Turtle Graphics (2 of 3)
+
+- `clear()` simply erases all drawings, doesn't change turtle position or color
+- `clearscreen()` erases all drawings, reset graphics windows
+- `setup(width, height)` specify size of graphics windows
+- `goto(x,y)` move turtle to coordinate position
+- `x,y = pos()` get the turtle's current coordinate position
+- `xcor()` `ycor()` get the x and y coordinate respectively
+- `speed(speed)` change turtle speed
+- `hideturtle()` hide the turtle
+- `write('text')` display text in the graphics windows
+- `begin_fill()` `end_fill()` `fill_color('color')` fill in shaps when drawn
+- `value = numinput('title', 'prompt')` pop up dialog to enter an integer value
+- `done()` keep window open if running in script mode
+
+# Introduction to Turtle Graphics (3 of 3)
+
+```bash
+(base) student@appdev:/workspaces/csci233-appdev/code/ch02$ python3 orion.py 
+```
+
+\begin{figure}
+\includegraphics[scale=0.35]{figures/ch02-turtle-graphics-orion}
+\label{fig:ch02-turtle-graphics-orion}
+\caption{Output of the `orion.py` program}
+\end{figure}
+
+
 # Summary
+
+- Turtle graphics is an interesting way to learn basic programming concepts
+- You can graphically results of using the `turtle` graphics module
+- Commands to move, rotate, draw, color and add text to graphical output
 
 # References
 \tiny
