@@ -1,6 +1,6 @@
 ---
 title: "Application Program Development"
-subtitle: "Ch 02: Input, Processing and Output"
+subtitle: "Ch 02: Input, Calculations and Formatted Output"
 author: Derek Harter
 date:  Summer 2026
 theme: Madrid
@@ -203,7 +203,7 @@ Hello World Hello World Hello World
   - Treated as commands embedded in string
 
 
-# Displaying Formatted Output with F-strings (1 of N)
+# Displaying Formatted Output with F-strings (1 of 5)
 
 - An **f-string** is a special type of string literal in Python that is
   prefixed with the letter `f`
@@ -225,7 +225,7 @@ The value is 12.
 The value is 12.
 ```
 
-# Displaying Formatted Output with F-strings (2 of N)
+# Displaying Formatted Output with F-strings (2 of 5)
 
 - Format specifiers can be used with placeholders
   
@@ -241,7 +241,7 @@ The value is 12.
 See [PEP 3101 – Advanced String Formatting](https://peps.python.org/pep-3101/) for a full list of all
 format specifiers
 
-# Displaying Formatted Output with F-strings (3 of N)
+# Displaying Formatted Output with F-strings (3 of 5)
 
 Specifying a minimum field width:
 
@@ -256,7 +256,7 @@ The number is    12,345.68
 \label{fig:ch02-formatted-string-field-width}
 \end{figure}
 
-# Displaying Formatted Output with F-strings (4 of N)
+# Displaying Formatted Output with F-strings (4 of 5)
 
 - Aligning values within a field
   - use `<` for left alignment
@@ -272,7 +272,7 @@ The number is    12,345.68
 Alan Turingaaaaaaaaa|bbbbbbbbbbbComputer Scientistbbbbbbbbbbb|ccccccccccccc4567.12
 ```
 
-# Displaying Formatted Output with F-strings (5 of N)
+# Displaying Formatted Output with F-strings (5 of 5)
 
 - The order of designators in a format specifier
   - When using multiple designators in a format specifier, write them
