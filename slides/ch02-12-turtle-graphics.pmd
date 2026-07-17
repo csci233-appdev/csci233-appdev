@@ -1,0 +1,57 @@
+---
+title: "Application Program Development"
+subtitle: "Ch 02: Introduction to Turtle Graphics"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to Turtle Graphics
+
+## Why Turtle Graphics?
+
+Turtle graphics is an interesting and easy way to learn basic
+programming concepts.  The Python turtle graphics system simulates
+a "turtle" that obeys commands to draw simple graphics.
+
+# Introduction to Turtle Graphics
+
+```{python, evaluate=False}
+import turtle
+
+```
+
+# Summary
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::

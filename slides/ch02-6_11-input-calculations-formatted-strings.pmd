@@ -50,7 +50,7 @@ Alan Turing
 
 ::: columns
 :::: {.column width=50%}
-- `input()` funciton always returns a string
+- `input()` function always returns a string
 - Built-in functions convert between data types
   - `int(item)` converts *item* to an `int`
   - `float(item)` converts *item* to a `float`
@@ -193,7 +193,7 @@ Hello World Hello World Hello World
   - Newline character at end of printed data
   - Special argument `end='delimiter'` causes `print()` to place
     *delimiter* at end of data instead of newline character
-- `print()` funciton uses space as item separator
+- `print()` function uses space as item separator
   - Special argument `sep='delimiter'` causes `print()` to use
     *delimiter* as item separator
 - Special characters appearing in string literal
@@ -319,6 +319,22 @@ INTEREST_RATE = 0.069
 - Named constants make code easier to maintain
 - Named constants help prevent typographical errors and bugs
 
+
+# Summary
+
+- Use the Python `input()` function to read input from standard in (keyboard)
+  - Always returns a `str` string type
+- Use `int()` and `float()` functions to convert string to a numeric value
+  - Can *nest* function calls, which is common when needing numeric input
+- Be aware of the difference between integer and floating-point division
+- Understand operator precedence, parentheses () always have highest precedence
+- There are differences between standard mathematical notation and how you
+  write a mathematical expression in Python
+- Learn and use formatted f-strings in Python for more control of output
+  - Can round floats to number of desired decimal places
+  - Can set field width of strings and floats
+  - Can left, center, and right justify outut within field
+  - and much more
 
 # References
 \tiny
