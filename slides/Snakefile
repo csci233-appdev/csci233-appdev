@@ -13,7 +13,8 @@ rule all:
 			 "ch02-1_5-input-output-variables.pdf", \
 			 "ch02-6_11-input-calculations-formatted-strings.pdf", \
 			 "ch02-12-turtle-graphics.pdf", \
-			 "ch03-1_4-if-else-decision-structures.pdf"]
+			 "ch03-1_4-if-else-decision-structures.pdf", \
+			 "ch03-5_6-logical-operators-boolean-variables.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"
