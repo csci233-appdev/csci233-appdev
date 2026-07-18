@@ -16,7 +16,8 @@ rule all:
 			 "ch03-1_4-if-else-decision-structures.pdf", \
 			 "ch03-5_6-logical-operators-boolean-variables.pdf", \
 			 "ch04-1_3-for-while-loop.pdf", \
-			 "ch04-4_7-calculations-with-loops.pdf"]
+			 "ch04-4_7-calculations-with-loops.pdf", \
+			 "ch05-1_3-introduction-to-functions.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"

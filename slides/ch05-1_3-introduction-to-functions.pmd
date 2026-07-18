@@ -1,0 +1,226 @@
+---
+title: "Ch 05: Introduction to Functions"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to Functions (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+- **Function**: group of statements within a program that perform a
+  specific task
+  - Usually one task of a large program
+    - Functions can be executed in order to perform overall program task
+  - Known as **divide and conquer**
+  - Known as **functional decomposition** of a problem into subproblems
+- **Modularized program**: program wherein each task within the program
+  is in its own function
+  - **Code reuse** can reuse functions, can organize functions into modules
+    for reuse.
+  - [Why Use Functions in Programming \parencite{medium-2021}](https://seattlewebsitedevelopers.medium.com/functions-and-why-use-them-74cd32fc2d72)
+  - [How to Write Good Functions \parencite{peppoloni-2018}](https://medium.com/@l.peppoloni/the-simplest-one-rule-to-write-good-functions-61288249f077)
+::::
+:::: {.column width=50%}
+## Function
+A function is a group of statements that exist within a program for the
+purpose of performing a **specific** task.
+::::
+:::
+
+# Introduction to Functions (2 of 2)
+
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch05-fig-5-1-divide-and-conquer}
+\label{fig:ch05-fig-5-1-divide-and-conquer}
+\caption{Using functions to divide and conquer a large task \parencite[pg.242]{gaddis-2021}}
+\end{figure}
+::::
+
+# Benefits of Modularizing a Program with Functions
+
+The benefits of using functions include:
+
+- **Simpler code**
+  - Improves readability, high level concepts captured as a function
+- **Code reuse**
+  - Write the code once and call it multiple times
+- **Better testing and debugging**
+  - Can test and debug each function individually (e.g. assignment unit tests)
+- **Faster development**
+  - A side effect of code-reuse, don't have to reinvent the wheel, write once use many
+- **Easier facilitation of teamwork**
+  - Decomposing into functions naturally allows team of developers to implement
+    different subsets of needed functions for whole program
+
+# Void Functions vs. Value-Returning Functions
+
+- A **void function**:
+  - Simply executes the statements it contains and then terminates.
+  - e.g. no `return` statement, Python `print()` function
+- A **value-returning function**:
+  - Executes the statements it contains, and then it returns a
+    value back to the statement that called it
+  - The `input()`, `int()` and `float()` functions are examples you have used
+
+# Defining and Calling a Function (1 of N)
+
+::: columns
+:::: {.column width=40%}
+- Need 3 things to define and use a function
+  1. Need to name the function (naming rules same as for variables)
+     - Function name should be description of the task
+     - Often includes a verb
+     - [Creating Meaningful Names \parencite{pacheco-2023}](https://dev.to/pacheco/how-do-you-name-things-3jae)
+  2. Need to determine the input parameters that will be passed into the function
+  3. Need to determine if the function returns a value, and if so what value(s)
+::::
+:::: {.column width=60%}
+**Function definition**: specifies what function does when called
+\vspace{0.5in}
+```{python, evaluate=False}
+def function_name(parameter1, parameter2):
+    statement
+    statement
+    return value # if value returning function
+```
+::::
+:::
+
+# Defining and Calling a Function (1 of N)
+
+::: columns
+:::: {.column width=50%}
+- Call a function to execute it
+- When a function is called:
+  - Interpreter jumps to the function and executes statements in the
+    function block
+  - Interpreter jumps back to part of program that called the function
+    when done
+    - Known as function return
+::::
+:::: {.column width=50%}
+```{python, evaluate=False}
+# define the function,
+# no input parameters,
+# no return result
+def message():
+    print('I am Arthur,')
+    print('King of the Britons.')
+
+# call the function
+message()
+```
+::::
+:::
+
+
+# Indentation in Python
+
+- Each block of statements must be indented (Python syntax to define a code block)
+  - Lines in block must begin with the same number of spaces
+    - Use spaces to indent lines in block, never create a file that has
+      embedded tabs, or mixed tabs and spaces for Python indentation
+      [Python PEP8 Style Guide](https://peps.python.org/pep-0008/)
+    - IDLE and most IDE for Python automatically indents the links in a block
+  - Blank lines that appear in a block are ignored
+  - Line comments in a block should be indented same as code in the block 
+
+# Designing a Program to Use Functions
+
+::: columns
+:::: {.column width=50%}
+- **Top-down design**: technique for breaking algorithm into functions
+\vspace{0.7in}
+- In a flowchart, function call shown as rectangle with vertical bars on each side
+  - Function name written in the symbol
+  - Typically draw separate flow chart for each function in the program
+    - End terminal symbol usually reads `Return`
+::::
+:::: {.column width=50%}
+::: {.block}
+## Top-Down Design
+
+Programmers commonly use a technique known as top-down design to
+break down an algorithm into functions.
+:::
+\begin{figure}
+\includegraphics[scale=0.15]{figures/ch05-fig-5-9-function-flowchart}
+\label{fig:ch05-fig-5-9-function-flowchart}
+\caption{Flowchart representation of a function \parencite[pg.250]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Hierarchy Chart
+
+**Hierarchy chart**: depicts relationship between functions
+
+- AKA structure chart
+- Box for each function in the program, lines connection boxes illustrate
+  the functions called by each function
+- Does not show steps taken inside function
+- In general, hierarchy corresponds to level from most abstract to most
+  detailed of the function decomposition in the program
+
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch05-fig-5-10-hierarchy-chart}
+\label{fig:ch05-fig-5-10-hierarchy-chart}
+\caption{A hierarchy chart \parencite[pg.251]{gaddis-2021}}
+\end{figure}
+
+# Summary
+
+- A function is a group of statements that exist within a program for the
+  purpose of performing a specific task
+- Functions are essential to good application development, benefits include:
+  - Simpler code
+  - Code reuse
+  - Better testing and debugging
+  - Faster development
+  - Easier facilitation of teamwork
+- Functions can be void functions, that return no value, or value-returning
+  functions.
+  - Likewise functions can take 0, 1 or many parameters as input
+- Need 3 things to define and use a function
+  1. Need to choose a meaningful name to call the function
+  2. Need to determine input parameters (if any) for the function
+  3. Need to determine if function returns a result, and if so what values
+     it returns
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
