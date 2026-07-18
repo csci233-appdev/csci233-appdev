@@ -15,7 +15,8 @@ rule all:
 			 "ch02-12-turtle-graphics.pdf", \
 			 "ch03-1_4-if-else-decision-structures.pdf", \
 			 "ch03-5_6-logical-operators-boolean-variables.pdf", \
-			 "ch04-1_3-for-while-loop.pdf"]
+			 "ch04-1_3-for-while-loop.pdf", \
+			 "ch04-4_7-calculations-with-loops.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"

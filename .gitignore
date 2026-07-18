@@ -9,3 +9,4 @@ slides/*.png
 .snakemake
 
 **/__pycache__/**
+.~*#

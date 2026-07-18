@@ -1,0 +1,182 @@
+---
+title: "Ch 04: Performing Calculations with Loops"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Calculating a Running Total
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Calculating a Running Total
+
+A running total is a sum of numbers that accumulates with each iteration
+of a loop.  The variable used to keep the running total is called 
+an accumulator.
+:::
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch04-fig-4-6-running-total-loop}
+\label{fig:ch04-fig-4-6-running-total-loop}
+\caption{Logic for calculating a running total \parencite[pg.211]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- Programs often need to calculate a total of a series of numbers
+  - Typically include two elements
+    1. A loop that reads each number in series
+    2. An **accumulator** variable
+  - Known as program that keeps a running total: accumulates total
+    and reads in series
+  - At end of loop, accumulator will reference the total
+::::
+:::
+
+
+# The Augmented Assignment Operators
+
+- In many assignment statements, the variable on the left side of the `=`
+  operator also appears on the right side
+- **Augmented assignment operators**: special set of operators designed
+  for this type of common assignment
+
+| **Operator** | **Example Usage** | **Equivalent to** |
+| ------------ | ----------------- | ----------------- |
+| `+=`         | `x += 5`          | `x = x + 5`       |
+| `-=`         | `y -= 2`          | `y = y - 2`       |
+| `*=`         | `z *= 10`         | `z = z * 2`       |
+| `/=`         | `a /= b`          | `a = a / b`       |
+| `%=`         | `c %= 3`          | `c = c % 3`       |
+| `//=`        | `x //= 3`         | `x = x // 3`      |
+| `**=`        | `y **= 2`         | `y = y**2`        |
+
+Table: Augmented assignment operators
+
+# Sentinels
+
+::: columns
+:::: {.column width=50%}
+- **Sentinel**: special value that marks the end of a sequence of items
+  - When a program reaches a sentinel, it knows that the end of the
+    sequence of items was reached, and the loop terminates
+  - Must be distinctive enough so as not to be mistaken for a regular
+    value in the sequence
+  - Example: when reading an input file, empty line can be used as a
+    sentinel
+::::
+:::: {.column width=50%}
+::: {.block}
+## Sentinel
+A sentinel is a special value that marks the end of a sequence
+of values
+:::
+\begin{figure}
+\includegraphics[scale=0.15]{figures/sentinel}
+\label{fig:sentinel}
+\end{figure}
+::::
+:::
+
+
+# Input Validation Loops
+
+::: columns
+:::: {.column width=50%}
+- Computer cannot tell the difference between good and bad data
+  - If user provides bad input, program will produce bad output
+  - It is important to design programs such that bad input is never accepted
+- **Input validation**: inspecting input before it is processed by the program
+  - If input is invalid, prompt user to enter correct data
+  - Commonly accomplished using a `while` loop which repeats as long as
+    the input is bad
+    - If input is bad, display error message and try again
+    - If input is good, continue past loop and process input
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch04-fig-4-7-input-validation-loop-flowchart}
+\label{fig:ch04-fig-4-7-input-validation-loop-flowchart}
+\caption{Logic for an input validation loop \parencite[pg.218]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Nested Loops
+
+::: columns
+:::: {.column width=60%}
+- **Nested loop**: loop that is contained inside another loop
+  - Example: analog clock works like nested loop
+    - Hours hand moves once for every twelve movements of the minutes
+      hand
+    - Seconds hand moves 60 times for each movement of the minutes hand
+
+- Key points about nested loops:
+  - Inner loop goes through all of its iterations for each iteration of
+    outer loop
+  - Inner loops complete their iterations faster than outer loops
+- Total number of iterations in nested loop
+$$
+\text{num iter inner loop} \times \text{num iter outer loop}
+$$
+::::
+:::: {.column width=40%}
+\begin{figure}
+\includegraphics[scale=0.20]{figures/ch04-fig-4-8-nested-loop-flowchart}
+\label{fig:ch04-fig-4-8-nested-loop-flowchart}
+\caption{Flowchart for a clock simulator \parencite[pg.223]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Summary
+
+- There are several common tasks or calculation you perform with a loop
+  - Iterate over a series of items in a collection to process each item
+  - For example, calculate a running total of items, using an **accumulator**
+- Augmented assignment operators are common when updating the value of
+  a variable, e.g. reassigning updated value back into original variable
+- Many loops are *sentinel-controlled loops* that keep processing input
+  until a special **sentinel** value is detected in the input.
+- Another common task for loops is **input validation** where input
+  is entered and checked to see if valid, and the loop does not continue
+  until valid input has been received.
+- Loops can be nested for many purposes
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+
