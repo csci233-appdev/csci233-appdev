@@ -1,0 +1,246 @@
+---
+title: "Ch 05: Local and Global Variables, Arguments to Functions"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Local Variables
+
+::: columns
+:::: {.column width=66%}
+- **Local variable**: variable that is assigned a value inside of
+  a function
+  - Belongs to the function in which it was created
+    - Only statements inside that function can access it, error will
+      occur if another function tries to access the variable
+- **Scope**: the part of a program in which a variable may be accessed
+  - For local variable: function in which created is its scope
+
+\vspace{0.2in}
+- Local variable cannot be accessed by statements inside its function which
+  precede its creation (same with any variable, can't use until defined)
+- Different functions may have local variables with the same name
+  - Each function does not see the other function's local variables,
+    so no confusion
+::::
+:::: {.column width=33%}
+## Local Variables
+
+A local variable is created inside a function and cannot be accessed
+by statements that are outside the function.  Different functions can have
+local variables with the same names because the functions cannot see
+each other's local variables.
+::::
+:::
+
+
+# Passing Arguments to Functions (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Function Arguments
+
+An argument is any piece of data that is passed into a function when the
+the function is called.  A parameter is a variable that receives an
+argument that is passed into a function.
+:::
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch05-fig-5-13-argument-passing}
+\label{fig:ch05-fig-5-13-argument-passing}
+\caption{The value variable is passed as an argument \parencite[pg.259]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- **Argument**: piece of data that is sent into a function
+  - Function can use argument in calculations
+  - When calling the function, the argument is placed in parentheses
+    following the function name
+  - Argument is a local variable, local in scope to function, that is
+    initialized with value that is passed in when function is called
+::::
+:::
+
+
+# Passing Arguments to Functions (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+- **Parameter variable**: variable that is assigned the value of an
+  argument when the function is called
+  - The parameter references a copy of the value passed in to it
+  - **Scope of a parameter**: the function in which the parameter is used
+    - A parameter is a local variable that is initialized when the
+      function is called by the input
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch05-fig-5-14-pass-by-value}
+\label{fig:ch05-fig-5-14-pass-by-value}
+\caption{The value variable and the number parameter reference the same value \parencite[pg.260]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Passing Multiple Arguments
+
+::: columns
+:::: {.column width=50%}
+- Python allows writing a function that accepts multiple input arguments
+  - Parameter list replaces single parameter
+  - Parameter list items separated by comma
+- Arguments are passed **by position** to corresponding parameters
+  - First parameter receives value of first argument, second parameter
+    gets value of second argument, etc.
+  - Position matters (for positional arguments)
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch05-fig-5-16-positional-arguments}
+\label{fig:ch05-fig-5-16-positional-arguments}
+\caption{Two arguments passed to two parameters \parencite[pg.263]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Making Changes to Parameters (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Pass by Value
+
+Changes made to a parameter value within the function do not affect the
+argument on return to the caller
+:::
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch05-fig-5-17-pass-by-value-2}
+\label{fig:ch05-fig-5-17-pass-by-value}
+\caption{The value variable is passed to the change\_me() function \parencite[pg.265]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- Known as **pass by value**
+- Provides a way for unidirectional communication between one
+  function and another function
+  - Calling function can communicate with called function (not vice-versa)
+
+::::
+:::
+
+# Making Changes to Parameters (2 of 2)
+
+- The `value` variable passed to the `change_me()` function cannot
+  be changed by it.
+  - Changes to `arg` affect the copy it referencs, not the original value
+
+\begin{figure}
+\includegraphics[scale=0.5]{figures/ch05-fig-5-18-pass-by-value}
+\label{fig:ch05-fig-5-18-pass-by-value}
+\caption{The value variable is not effected by changes to copy reference by arg \parencite[pg.265]{gaddis-2021}}
+\end{figure}
+
+
+# Keyword Arguments
+
+- **Keyword argument**: argument that specifies which parameter the value should be passed to
+  - Position when calling function is irrelevant
+  - General format: `function_name(parameter=value)`
+- Possible to mix keyword and positional arguments
+  - Positional arguments must appear first
+
+# Global Variables and Global Constants
+
+::: columns
+:::: {.column width=50%}
+- **Global variable**: created by assignment statement written outside
+  of any function
+  - Can be accessed by any statement in the program file, including
+    from within a function
+  - If a function needs to assign a value to the global variable, the
+    global variable must be redeclared within the function
+    - General format: `global variable_name`
+::::
+:::: {.column width=50%}
+## Global Variables Considered Bad [\parencite{mervin-2017}](https://dev.to/mervinsv/why-global-variables-are-bad-4pj)
+
+Reasons to avoid using global variables:
+
+- Global variables make debugging difficult
+  - Many locations in the code could be causing a wrong variable value
+- Functions that use global variables are usually dependent on those variables
+  - Makes function hard to transfer to another program
+- Global variables make a program hard to understand
+::::
+:::
+
+# Global Constants
+
+- **Global constant**: global name that references a value that cannot be changed
+  - Permissible (and even good at times) to use global named constants in program
+  - To simulate global constant in Python, create global variable and do not
+    re-declare it within functions (don't use `global` keyword)
+
+```{python, evaluate=False}
+CONTRIBUTION_RATE = 0.05
+
+def show_pay_contrib(gross):
+    contrib = gross * CONTRIBUTION_RATE
+    print(f'Contribution for gross pay: ${contrib:,.2f}.')
+
+def show_bonus_contrib(bonus):
+    contrib = bonus * CONTRIBUTION_RATE
+    printf('Contribution for bonuses: ${contrib:,.2f}.')
+```
+
+
+# Summary
+
+- A **local variable** is a variable assigned a value inside of a function
+  - Local variables are local in **scope** to the function where they are created
+- **Arguments** are pieces of data that are sent as input into a function
+  - Function can have 0, 1 or many arguments
+  - Arguments are passed by value
+  - Call a function by passing arguments in parentheses `()`, 
+    - Can use positional and/or keyword arguments when calling functions
+- A variable declared outside of any function is **Global** in scope 
+  - Usually don't use global variables, but global named constants are acceptable
+
+
+# References
+\tiny
+\printbibliography
+
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
