@@ -20,7 +20,8 @@ rule all:
 			 "ch05-1_3-introduction-to-functions.pdf", \
 			 "ch05-4_6-local-global-variables-arguments.pdf", \
 			 "ch05-7_10-value-returning-functions-modules.pdf", \
-			 "ch06-1_2-file-input-output.pdf"]
+			 "ch06-1_2-file-input-output.pdf", \
+			 "ch06-3_4-file-records-exceptions.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"
