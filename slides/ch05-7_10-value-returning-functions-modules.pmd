@@ -97,7 +97,7 @@ r = value_returning_function(p1, p2, ...)
 
 ::: columns
 :::: {.column width=50%}
-- Random numbers are useful in a log of programmint tasks
+- Random numbers are useful in a lot of programming tasks
 - **random** module: includes library functions for working with random numbers
 - **Dot notation** notation for calling a function in a module namespace
   - Format: `module_name.function_name()`
@@ -162,7 +162,7 @@ value back to the caller of the function.
 - To write a value-returning function, you write a simple function and
   add one or more `return` statements
   - Format: `return expression`
-    - The value for `expression` will be returned to the call of your
+    - The value for `expression` will be returned to the caller of your
       function
   - The the expression in the `return` statement cane be a complex expression,
     such as a sum of two variables or the result of another value-returning
@@ -170,15 +170,256 @@ value back to the caller of the function.
 ::::
 :::
 
+# Advantages of Value-Returning Functions
+
+- Value-returning functions have the same benefits of functions we have discussed
+  - simplify code
+  - reduce duplication
+  - provide for code reuse
+- A major advantage of functions is increased ability to test code
+  - A value-returning function is a black box: "data in, result out"
+  - Can create tests of usual and edge cases for functions, to determine
+    they work correctly and as expected
+  - Tests are valuable products of software engineering systems, they
+    give confidence code is working, and still working as it is modified
+
+# Using IPO Charts
+
+::: columns
+:::: {.column width=50%}
+- **IPO chart**: describes the input, processing and output of a function
+  - Tool for designing and documenting functions
+  - Typically laid out in columns
+  - Usually provide brief descriptions of input, processing, and output, without
+    going into details
+    - Often includes enough information to be used instead of flowchart
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch05-fig-5-25-ipo-charts}
+\label{fig:ch05-fig-5-25-ipo-charts}
+\caption{IPO charts for the get\_regular\_price() and discount() functions \parencite[pg.283]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Tests and Python Docstring documentation
+
+::: columns
+:::: {.column width=50%}
+\tiny
+```{python, evaluate=False}
+import math
+import pytest
+
+# The sum function accepts two numeric arguments and
+# returns the sum of those arguments.
+def area_of_circle(radius):
+    """
+    Given the radius of some circle, calculate and
+    return the area of the circle.
+
+    Parameters
+    ----------
+    radius : float
+        The radius of a circle we are being asked
+        to calculate the area for.
+
+    Returns
+    -------
+    area : float
+        The area of the indicated circle is
+        calculated and returned as the result of
+        this function.
+    """
+    area = math.pi * radius**2.0
+    return area
+```
+::::
+:::: {.column width=50%}
+- Python Docstrings, many styles same as IPO but self-documenting code
+  [Python Docstrings](https://www.geeksforgeeks.org/python/python-docstrings/)
+  \parencite{geeks-2025}
+- [pytest Tutorial: Effective Python Testing](https://realpython.com/pytest-python-testing/) \parencite{hillard-2024}
+
+\vspace{0.2in}
+
+\tiny
+```{python, evaluate=False}
+# example of pytest tests
+def test_zero():
+    area = area_of_circle(0.0)
+    assert area == pytest.approx(0.0)
+
+def test_unit_circle():
+    area = area_of_circle(1.0)
+    assert area == pytest.approx(math.pi)
+
+def test_small_circle():
+    area = area_of_circle(0.5)
+    assert area == pytest.approx(0.7853981633974483)
+```
+::::
+:::
+
+
+# Returning Boolean Values
+
+::: columns
+:::: {.column width=50%}
+- **Boolean function**: returns either `True` or `False`
+  - Use to test a condition such as for decision and repetition structures
+    - Common calculations, such as whether a number is even, can be easily
+      repeated by calling a function
+  - Use to simplify complex input validation code
+::::
+:::: {.column width=50%}
+\tiny
+```{python, evaluate=False}
+def is_invalid(model_num):
+    if model_num != 100 and model_num != 200 and model_num != 300:
+        status = True
+    else:
+        status = False
+    return status
+
+# Get the model number.
+model = int(input('Enter the model number: '))
+# Validate the model number.
+while is_invalid(model):
+    print('The valid model numbers are 100, 200 and 300.')
+    model = int(input('Enter a valid model number: '))
+```
+::::
+:::
+
+
+# Returning Multiple Values
+
+::: columns
+:::: {.column width=50%}
+- In Python, a function can return multiple values
+  - Specified after the `return` statement separated by commas
+  - Format: `return expression1, expression2, etc.`
+- When you call such a function in an assignment statement, you need
+  a separate variable on the left side of the `=` operator to 
+  receive each returned value
+::::
+:::: {.column width=50%}
+\tiny
+```{python, evaluate=False}
+def get_name():
+    # Get the user's first and last names.
+    first = input('Enter your first name: ')
+    last = input('Enter your last name: ')
+    # Return both names.
+    return first, last
+
+first_name, last_name = get_name()
+```
+::::
+:::
+
+
+# The `math` Module
+
+::: columns
+:::: {.column width=66%}
+- **`math` module**: part of standard library that contains functions
+  that are useful for performing mathematical calculations
+  - Typically accept one or more values as arguments, perform 
+    mathematical operation, and return the result
+  - Use of module requires an `import math` statement
+- The `math` module defines variables `pi` and `e` which are
+  assigned the mathematical values for $\pi$ and $e$
+  - Can be used in equations that require these values, to get more
+    accurate results
+- Variables must also be referred to using the dot notation
+  - Example: `circle_area = math.pi * radius**2.0`
+::::
+:::: {.column width=33%}
+## Python `math` Module
+
+The Python standard library's `math` module contains numerous
+functions that can be used in mathematical calculations.
+::::
+:::
+
+# The `math` Module
+
+\tiny
+| **`math` Module Function** | **Description**                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| `acos(x)`                  | Returns the `arc cosine` of `x` in radians                                               |
+| `asin(x)`                  | Returns the `arc sine` of `x` in radians                                                 |
+| `atan(x)`                  | Returns the `arc tangent` of `x` in radians                                              |
+| `ceil(x)`                  | Returns the smallest integer that is greater than or equal to `x`                        |
+| `cos(x)`                   | Returns the `cosine` of `x` in radians                                                   |
+| `degrees(x)`               | Assuming `x` is an angle in radians, the function returns the angle converted to degrees |
+| `exp(x)`                   | Returns $e^x$                                                                            |
+| `floor(x)`                 | Returns the largest integer that is less than or equal to `x`                            |
+| `hypot(x, y)`              | Returns the length of a hypotenuse that extends from `(0, 0)` to `(x, y)`                |
+| `log(x)`                   | Returns the natural logarithm of `x`                                                     |
+| `log10(x)`                 | Returns the base-10 logarithm of `x`                                                     |
+| `radians(x)`               | Assuming `x` is an angle in degrees, the function returns the angle converted to radians |
+| `sin(x)`                   | Returns the `sine` of `x` in radians                                                     |
+| `sqrt(x)`                  | Returns the square root of `x`                                                           |
+| `tan(x)`                   | Returns the `tangent` of `x` in radians                                                  |
+
+Table: Many of the functions in the `math` module
+
+
+# Storing Functions in Modules
+
+::: columns
+:::: {.column width=33%}
+## Python Modules
+
+A module is a file that contains Python code.  Large programs are
+easier to debug and maintain when they are divided into modules.
+
+A module defines a **namespace** within which all functions and
+variables declared in the module reside and are accessed from.
+::::
+:::: {.column width=66%}
+- In large, complex programs, it is important to keep code organized
+- **Modularization**: grouping related functions in modules
+  - Makes program easier to understand, test and maintain
+  - Make it easier to reuse code from multiple different programs
+    - Import the module containing the required function to each program
+      that needs it
+- Modules contain function definitions but does not contain calls to the functions
+  - Importing programs will call and use the functions in a module
+- Rules for module names:
+  - File name should end in `.py`
+  - Cannot be the same as a Python keyword
+- Import module using `import` statement
+::::
+:::
+
+
 # Summary
 
+- **Value-returning functions** take input, perform a calculation, and return
+  the result of the calculation
+- Python contains a large and useful **standard library** that can be
+  `import`ed and used in your programs
+  - When you `import` a module, it will be in a **namespace** defined by the
+    module name
+- You can write your own value-returning functions using the `return` keyword
+  to return a value or expression
+- Advantages of functions:
+  - simplify code
+  - reduce duplication
+  - provide for code reuse
+  - increase ability to test code
+- **Modularization** is the grouping of related functions in modules, the
+  standard library is a collection of useful modules that you can use
 
 
 # References
 \tiny
 \printbibliography
-
-
 
 ::: columns
 :::: {.column width=50%}
