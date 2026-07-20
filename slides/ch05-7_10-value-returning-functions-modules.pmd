@@ -1,0 +1,188 @@
+---
+title: "Ch 05: Value Returning Functions, Python Modules"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Value-Returning Functions
+
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Value-Returning Function
+
+A value-returning function is a function that returns a value back
+to the caller. Python, as well as most other programming languages,
+provide a library of prewritten functions that perform commonly needed
+tasks.
+:::
+\vspace{0.2in}
+\tiny
+```{python, evaluate=False}
+def value_returning_function(parameter1, parameter2, ...):
+    calculation1
+    calculation2
+    return result
+
+r = value_returning_function(p1, p2, ...)
+```
+::::
+:::: {.column width=50%}
+- **void function**: group of statements within a program for performing
+  a specific task
+  - Call function when you need to perform the task
+  - The task is done as a *side-effect* of calling a void function
+- **Value-returning function**: In contrast a value-returning function
+  calculates a result from input and returns the result from calling
+  the function
+  - Value returned to the caller that invoked the function
+::::
+:::
+
+# Standard Library Functions and the `import` Statement
+
+::: columns
+:::: {.column width=50%}
+- **Standard library**: library of pre-written functions that comes
+  with a programming language like Python
+  - **Library functions** perform tasks that programmers commonly need
+    - Example: `print()`, `input()`, `range()`
+    - Viewed by programmers as a "black box"
+- Some library functions built into Python interpreter
+  - To use, just call the functions
+::::
+:::: {.column width=50%}
+- **Modules**: collections of functions in standard library
+  - Help organize library functions not built into the interpreter
+  - Module **namespaces**
+- To call a function stored in a module, need to write an `import` statement
+  - Written at the **top** of the program
+  - Format: `import module_name`
+
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch05-fig-5-19-library-function}
+\label{fig:ch05-fig-5-19-library-function}
+\caption{A library function viewed as a black box \parencite[pg.273]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+
+# Generating Random Numbers (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+- Random numbers are useful in a log of programmint tasks
+- **random** module: includes library functions for working with random numbers
+- **Dot notation** notation for calling a function in a module namespace
+  - Format: `module_name.function_name()`
+- **`randint()` function**: generates a random number in the range 
+  provide by the arguments
+  - Returns the random number ot part of program that called the function
+  - Returned integer can be used anywhere that an integer can
+  - You can experiment with the function in interactive mode
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch05-fig-5-20-random-function}
+\vspace{0.5in}
+\includegraphics[scale=0.6]{figures/ch05-fig-5-21-random-function-return}
+\label{fig:ch05-fig-5-20-random-function}
+\caption{The random function returns a random int in asked for range \parencite[pg.274]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Generating Random Numbers (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+- **`randrange()` function**: similar to `range()` function, but returns randomly
+  selected integer from the resulting sequence
+  - Same arguments as for the `range()` function
+- **`random()` function**: returns a random `float` in the range of 0.0 to 1.0
+  - Does not have any arguments
+- **`uniform()` function**: returns a random `float` but allows user to specify
+  range
+::::
+:::: {.column width=50%}
+## Pseudo-Random Numbers
+Random number created by functions in `random` module are actually 
+pseudo-random numbers.
+
+- **Seed value**: initializes the formula that generates random numbers
+  - Need to use different seeds in order to get different series of
+    random numbers
+    - By default uses system time for seed
+    - Can use `random.seed()` function to specify desired seed value
+::::
+:::
+
+# Writing Your Own Value-Returning Functions
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Value-Returning Function
+A value-returning function has a `return` statement that returns a 
+value back to the caller of the function.
+:::
+\begin{figure}
+\includegraphics[scale=0.5]{figures/ch05-fig-5-23-function-parts}
+\label{fig:ch05-fig-5-23-function-parts}
+\caption{Parts of a function \parencite[pg.283]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- To write a value-returning function, you write a simple function and
+  add one or more `return` statements
+  - Format: `return expression`
+    - The value for `expression` will be returned to the call of your
+      function
+  - The the expression in the `return` statement cane be a complex expression,
+    such as a sum of two variables or the result of another value-returning
+    function
+::::
+:::
+
+# Summary
+
+
+
+# References
+\tiny
+\printbibliography
+
+
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
