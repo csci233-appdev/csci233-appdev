@@ -1,0 +1,279 @@
+---
+title: "Ch 06: File Input / Output Processing"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to File Input and Output
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## File Input / Output
+
+When a program needs to save data for later use, it writes the data in
+a file.  The data can be read from the file at a later time.
+:::
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch06-fig-6-2-file-reading-data}
+\label{fig:ch05-fig-6-2-file-reading-data}
+\caption{Reading data from a file \parencite[pg.326]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- For program to retain data between the times it is run, you must
+  save the data
+  - Data is saved to a file, typically on computer disk
+  - Saved data can be retrieved and used at a later time
+- "Writing data to": saving data on a file
+  - **Output file**: a file that data is written to
+- "Reading data from": process of retrieving data from a file
+  - **Input file**: a file from which data is read
+- Three steps when a program uses a file
+  1. Open the file
+  2. Process the file
+  3. Close the file
+::::
+:::
+
+# Types of Files and File Access Methods
+
+::: columns
+:::: {.column width=45%}
+## Types of Files
+
+- In general, there are two types of files that can be created
+  1. **Text file**: contains data that has been encoded as (ASCII/Unicode) text
+  2. **Binary file**: contains data that is not text encoded, cannot open in a text editor
+::::
+:::: {.column width=45%}
+## File Access Methods
+
+- Two ways to access data stored in a file
+  1. **Sequential access**: file read sequentially from beginning to end,
+     can't skip ahead
+  2. **Direct access**: (also random access) can jump directly to any piece
+     of data in the file
+::::
+:::
+
+# Filenames and File Objects
+
+::: columns
+:::: {.column width=50%}
+- **Filename extensions**: short sequences of characters that appear 
+  at the end of a filename preceded by a period
+  - Extension indicates type of data stored in the file
+  - OS may use extension to open associated program to view, but you can
+    create file with any extension you like
+- **File object**: object associated with a specific file
+  - Provides a way for a program to work with the file
+  - File object referenced by a variable
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch06-fig-6-4-file-object}
+\label{fig:ch05-fig-6-4-file-object}
+\caption{A variable name references a file object that is associated with a file \parencite[pg.326]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Opening a File
+
+::: columns
+:::: {.column width=40%}
+- **`open()` function**: used to open a file
+  - Creates a file object and associates it with a file on the disk
+- **Mode**: string specifying how the file will be opened
+
+\vspace{0.1in}
+General format:
+  
+\vspace{0.1in}
+\tiny
+```{python, evaluate=False}
+file_variable = open(filename, mode)
+```
+::::
+:::: {.column width=60%}
+| **Mode** | **Description**                                                                                                                  |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 'r'      | Open a file for reading only.  The file cannot be changed or written to.                                                         |
+| 'w'      | Open a file for writing.  If the file already exists, erase its contents.  If it does not exist, create it.                      |
+| 'q'      | Open a file to be written to.  All data written to the file will be appended to its end.  If the file does not exist, create it. |
+
+Table: Some of the Python file modes
+::::
+:::
+
+# Specifying the Location of a File
+
+- If `open()` receives a filename that does not contain a path, assume that
+  file is in the same directory as program
+- If program is running and file is created, it is created in the same directory
+  as the program
+  - Can specify alternative path and file name in the open function argument
+    - Prefix the path string literal with the letter `r` for raw strings, especially
+      needed on Windows computers that use `\` as path separators
+
+**Note**: It is generally **BAD** to encode an absolute path name in a
+program.  This will often make the program not portable to any other location
+unless the path name is changed again before you run the program.
+
+# Writing Data to a File
+
+- **`write()` method**: a function that belongs to an object (returned by `open()`)
+  - Performs operations using that object
+- File object's `write()` method used to write data to the file
+- File should be closed using file object `close()` method
+
+Format:
+
+```{python, evaluate=False}
+test_file = open('test.txt', 'w')
+test_file.write('Test String')
+test_file.close()
+```
+
+# Reading Data From a File
+
+- **`read()` method**:  file object method that reads entire file contents
+  into memory
+  - Only works if files has been opened for reading
+  - Contents returned as a string
+- **`readline()` method**: file object method that reads a single
+  line from the file
+  - Line returned as a string, including trailing `'\n'`
+- **Read position**: marks the location of the next item to be read
+  from a file
+
+# Note on Opening and Closing Files 
+
+Since our textbook was written, the recommended way to open and close
+files for access has changed.  You can and should use `with open() as file`:
+
+```{python, evaluate=False}
+with open('test.txt', 'r') as test_file:
+    content = test_file.read()
+    print(content)
+```
+
+- No `close()` is issued, the `with` block automatically closes files opened
+  by the `with` statement.
+- Consider the modern recommended way to open files [Python open() Function Explained](https://www.digitalocean.com/community/tutorials/python-read-file-open-write-delete-copy) \parencite{ocean-2025}
+- Prevents certain bugs, when an error occurs file is guaranteed to be closed
+- You should use `with` blocks in your assignments for this class
+
+# Concatenating a Newline to and Stripping it From a String
+
+- In most cases, data items written to a file are values reference by variables
+  - Usually necessary to concatenate a `'\n'` to data before writing it
+    - Carried out using the `+` operator in the argument of the `write()` method
+- In many cases need to remove `'\n'` from string after it is read from a file
+  - `rstrip()` method: string method that strips specific characters from end
+    of string
+
+# Appending Data to an Existing File
+
+- When open wile with `'w'` mode, if the file already exists it is overwritten
+- To append data to a file use the `'a'` mode
+  - If file exists, it is not erased, and if it does not exist it is created
+  - Data is written to the file at the end of the current contents
+
+# Writing and Reading Numeric Data
+
+- Numbers must be converted to strings before they are written to a file
+- **`str()` function**: converts value to a string
+- Numbers are read from a text file as strings
+  - Must be converted to numeric type in order to perform mathematical
+    operations
+  - Use `int()` and `float()` functions to convert string to numeric value
+
+# Using Loops to Process Files
+
+::: columns
+:::: {.column width=50%}
+- Files typically used to hold large amounts of data
+  - Loop typically involved in reading from and writing to a file
+- Often the number of items stored in file is unknown
+  - The `readline()` method uses an empty string as a **sentinel** when
+    end of file is reached
+    - Can write a while loop with the condition
+
+```{python, evaluate=False}
+while line != '':
+```
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch06-fig-6-17-end-of-file-flowchart}
+\label{fig:ch05-fig-6-17-end-of-file-flowchart}
+\caption{General logic for detecting the end of a file reading line-by-line \parencite[pg.345]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Using Python's `for` Loop to Read Lines
+
+- Better method for line oriented processing
+- Python allows programmer to write a `for` loop that automatically reads
+  lines in a file and stops when end of file is reached
+
+```{python, evaluate=False}
+for line in file_object:
+    statements
+```
+
+- The loop iterates once over each line in the file and stops when end
+  of file reached
+
+# Summary
+
+- For programs to retain data, must be saved in permanent (non-volatile) memory,
+  e.g. on computer disk as a file
+- Three steps
+  1. Open the file using `open()`
+  2. process the file (read or write usually one, sometimes both)
+  3. Close the file using `close()`
+  - Should use `with open() as file:` blocks in new Python code
+- Files can be open as text, or as binary
+- Files can be accessed sequentially, or using direct access (random access)
+- Use Python `for` loop on file object to read and process line-oriented input
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+
+
