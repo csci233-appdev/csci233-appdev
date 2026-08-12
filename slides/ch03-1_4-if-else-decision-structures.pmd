@@ -113,7 +113,7 @@ Table: Boolean expressions using relational operators
 - Any relational operator can be used in a decision block
   - Example: `if balance == 0`
   - Example: `if payment != balance`
-- It is possible to have a block inside another blocked (nested)
+- It is possible to have a block of statements inside another block (nested)
   - Example: `if` statement inside a function
   - Statements in inner block must be indented with respect to the
     outer block 

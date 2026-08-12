@@ -164,7 +164,7 @@ value back to the caller of the function.
   - Format: `return expression`
     - The value for `expression` will be returned to the caller of your
       function
-  - The the expression in the `return` statement cane be a complex expression,
+  - The expression in the `return` statement can be a complex expression,
     such as a sum of two variables or the result of another value-returning
     function
 ::::

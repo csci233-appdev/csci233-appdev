@@ -87,7 +87,7 @@ The benefits of using functions include:
     value back to the statement that called it
   - The `input()`, `int()` and `float()` functions are examples you have used
 
-# Defining and Calling a Function (1 of N)
+# Defining and Calling a Function (1 of 2)
 
 ::: columns
 :::: {.column width=40%}
@@ -111,7 +111,7 @@ def function_name(parameter1, parameter2):
 ::::
 :::
 
-# Defining and Calling a Function (1 of N)
+# Defining and Calling a Function (2 of N)
 
 ::: columns
 :::: {.column width=50%}

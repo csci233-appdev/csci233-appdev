@@ -52,7 +52,7 @@ an accumulator.
     2. An **accumulator** variable
   - Known as program that keeps a running total: accumulates total
     and reads in series
-  - At end of loop, accumulator will reference the total
+  - At end of loop, accumulator will hold the total
 ::::
 :::
 
