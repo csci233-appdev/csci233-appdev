@@ -1,0 +1,174 @@
+---
+title: "Ch 07: Tuples and Plotting Sequences with Matplotlib Library"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Tuples
+
+::: columns
+:::: {.column width=60%}
+- **Tuple**: an immutable sequence
+  - Very similar to a list
+  - Once it is created it cannot be changed
+  - Format: `t = (item1, item2)
+  - Tuples support operations as lists
+    - Subscript indexing for retrieving elements
+    - Methods such as `index()`
+    - Built in functions such as `len()`, `min()`, `max()`
+    - slicing expressions
+    - The `in` `+` and `*` operators
+  - Tuples do not support
+    - `append()`
+    - `remove()`
+    - `insert()`
+    - `reverse()`
+    - `sort()`
+
+::::
+:::: {.column width=40%}
+::: {.block}
+## Tuple
+
+A Tuple is an immutable sequence, which means that its contents
+cannot be changed.
+:::
+Advantages of tuples over lists:
+
+- Processing tuples is faster than processing lists
+- Tuples are safe
+- Some operations in Python require use of tuples
+::::
+:::
+
+# Plotting Data with `matplotlib` Library
+
+- The `matplotlib` package is a library for creating two-dimensional
+  charts and graphs
+- It is **not** part of the standard Python library, so you will have to
+  install it separately (e.g. `pip install`) after you install Python
+- The `matplotlib` package contains a (sub) module named `pyplot` that you
+  will need to import
+- Conventionally the following is used to import the `pyplot` module into
+  the `plt` name space:
+
+```{python, evaluate=False}
+import matplotlib.pyplot as plt
+```
+
+# Plotting a Line Graph with the `plot()` Function
+
+::: columns
+:::: {.column width=40%}
+- Use the `plot()` function to create a line graph that connects a
+  series of points with straight lines 
+  - Each point has an `(x, y)` coordinate
+  - Notice 2 separate sequences of same size, one for `x` and one for `y`
+    coordinates
+::::
+:::: {.column width=60%}
+
+```{python, evaluate=True, f_size=(3, 2), results='hidden'}
+import matplotlib.pyplot as plt
+
+x = [0, 1, 2, 3, 4]
+y = [0, 3, 1, 5, 2]
+plt.plot(x, y)
+```
+::::
+:::
+
+# Plotting a Bar Chart
+
+::: columns
+:::: {.column width=40%}
+- Use the `bar()` function in the `matplotlib.pyplot` module
+  to create bar charts
+- The function needs two sequences 
+  1. one with the x coordinates of each bar's center
+  2. and another with the heights of each bar along the y axis
+::::
+:::: {.column width=60%}
+
+```{python, evaluate=True, f_size=(3, 2.0), results='hidden'}
+import matplotlib.pyplot as plt
+
+centers = [5, 15, 25, 35, 45]
+heights = [100, 200, 300, 400, 500]
+bar_width = 9.8
+plt.bar(centers, heights, bar_width)
+```
+::::
+:::
+
+# Plotting a Pie Chart
+
+::: columns
+:::: {.column width=40%}
+- Use the `pie()` function in the `matplotlib.pyplot` module to create
+  a pie chart
+- When you call the `pie()` function, you pass a list of values
+  - The sum of the values will be used as the value of the whole
+  - Each element in the list will become a slice in the pie chart
+  - The size of a slice represents the element's value as a percentage of the whole
+- The `pie()` function has a `labels` parameter that you can use to display labels for slices
+  - A list of strings for the desired labels
+::::
+:::: {.column width=60%}
+
+```{python, evaluate=True, f_size=(3, 2.0), results='hidden'}
+import matplotlib.pyplot as plt
+
+sales = [100, 400, 300, 600]
+labels = ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr']
+plt.pie(sales, labels=labels)
+plt.title('Sales by Quarter')
+```
+::::
+:::
+
+
+# Summary
+
+- A tuple is an immutable sequence, similar to a list, but it cannot be changed once created
+- Has several advantages over a list, and must be used in some situations
+- You can use the `matplotlib.pyplot` library module to perform basic plotting
+  - Basically plot functions take sequences (lists or tuples) to specify
+    (x,y) coordinates or other plot elements
+  - Can plot line graphs, bar charts, pie charts, and many more not shown
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

@@ -1,0 +1,178 @@
+---
+title: "Ch 07: Lists: Sequences and Slicing"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.25]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Sequences
+
+::: columns
+:::: {.column width=65%}
+- **Sequence**: an object that contains multiple items of data
+  - The items are stored in sequence one after another
+  - Items can be accessed by integer index, first item in index 0, second at 1, etc.
+- Python provides different types of sequences, including **lists** and **tuples**
+  - The difference between these is that a list is **mutable** (modifiable)
+  - and a tuple is **immutable** (read-only)
+::::
+:::: {.column width=33%}
+## Sequence
+
+A sequence is an object that holds multiple items of data, stored one
+after the other.  You can perform operations on a sequence to examine
+and manipulate the items stored in it.
+::::
+:::
+
+# Introduction to Lists
+
+::: columns
+:::: {.column width=30%}
+::: {.block}
+## Lists
+
+A list is an object that contains multiple data items.
+Lists are **mutable**, which means that their contents can be
+changed during a program's executions.  Lists are dynamic data 
+structures, meaning items may be added to them or removed from
+them.  You can use indexing, slicing and various methods to work with
+lists in a program.
+:::
+::::
+:::: {.column width=68%}
+- **List**: an object that contains multiple data items (a **container**)
+  - **Element**: an item in a list
+  - Format: `list = [item1, item2, etc.]`
+  - Can hold items of different types (compare to an array in C/Java)
+- `print()` function can be used to display an entire list
+- `list()` function can convert certain types of objects to lists
+
+\vspace{0.25in}
+
+\begin{figure}
+\includegraphics[scale=0.45]{figures/ch07-fig-7-1-list-of-integers}
+\includegraphics[scale=0.40]{figures/ch07-fig-7-2-list-of-strings}
+\includegraphics[scale=0.45]{figures/ch07-fig-7-3-list-of-different-types}
+\label{fig:ch07-fig-lists}
+\caption{Lists of integers, strings and different types \parencite[pg.384]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# The Repetition Operator and Iterating over a List
+
+- **Repetition operator**: makes multiple copies of a list and joins
+  them together
+  - The `*` symbol is repetition operator when applied to a sequence
+    and an integer
+    - Sequence is left operand, number is right
+  - General format: `list * n`
+- You can iterate over a list using a `for` loop
+  - Format: `for x in list:`
+
+# Indexing
+
+- **Index**: a number specifying the position of an element in a list
+  - Enables access to individual element in list
+  - Index of first element in the list is `0`, second is `1`, and n'th element is `n-1`
+  - Negative indexes identify positions relative to end of list
+    - The index `-1` identifies the last element, `-2` the next to last, etc.
+
+# The `len()` Function
+
+- An `IndexError` exception is raised if an invalid index is used
+- `len()` function: returns the length of a sequence such as a list
+  - Example: `size = len(my_list)`
+  - Returns the number of elements in the list, so the index of the
+    last element is `len(list) - 1`
+  - Can be used to prevent an `IndexError` exception when iterating over
+    a list with a loop
+
+# Lists are Mutable
+
+- **Mutable sequence**: the items in the sequence can be changed
+  - Lists are mutable, and so their elements can be changed
+- An expression such as:
+```{python, evaluate=False}
+list[1] = new_value
+``` 
+  can be used to assign a new value to a list
+
+- Must use a valid index to prevent raising of an `IndexError` exception
+
+# Concatenating Lists
+
+- **Concatenate**: join two things together
+- The `+` operator can be used to concatenate two lists
+  - Cannot concatenate a list with another data type, such as a number
+- The `+=` augmented assignment operator can also be used to 
+  concatenate lists
+
+# List Slicing
+
+- **Slice**: a span of items that are taken from a sequence
+  - List slicing format: `list[start : end]`
+  - Span is a list containing copies of elements from `start` up to,
+    but not including `end`
+    - If `start` is not specified, 0 is used for start index
+    - If `end` is not specified, `len(list)` is used for end index
+  - Slicing expressions can include a step value and negative indexes
+    relative to end of list
+
+# Finding Items in Lists with the `in` Operator
+
+- You can use the `in` operator to determine whether an item is
+  contained in a list
+  - General format: `item in list`
+  - Returns `True` if the item is in the list, or `False` if it is 
+    not in the list
+- Similarly you can use the `not in` operator to determine whether an
+  item is not in a list
+
+# Summary
+
+- A list is a sequence, it contains multiple data items
+- A list is a mutable sequence, elements can be changed and it can be
+  appended to and have items removed from it
+- The items of a list can be indexed by position
+  - 0 based indexing, first item is at index 0, second at 1, and nth item at `n-1`
+  - Can use negative index to indicate position relative from end of list
+- List slicing is a powerful syntactic mechanism that allows you to get 
+  a copy of a span of items taken from a sequence
+- The `in` and `not in` operator can be used to search for an item in a list
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
