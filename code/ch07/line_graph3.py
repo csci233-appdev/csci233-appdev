@@ -14,6 +14,20 @@ def main():
     # Build the line graph.
     plt.plot(x_coords, y_coords, linewidth=5)
 
+    # Add a title.
+    plt.title('Sample Data')
+
+    # Add labels to the axes.
+    plt.xlabel('This is the X axis')
+    plt.ylabel('This is the Y axis')
+
+    # Set the axis limits.
+    plt.xlim(xmin=-1, xmax=10)
+    plt.ylim(ymin=-1, ymax=6)
+
+    # Add a grid.
+    plt.grid(True)
+
     # Display the line graph.
     plt.show()
 
