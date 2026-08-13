@@ -1,0 +1,257 @@
+---
+title: "Ch 09: Sets"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Sets
+
+::: columns
+:::: {.column width=30%}
+## Set
+
+A set contains a collection of unique values and works like a
+mathematical set.
+::::
+:::: {.column width=68%}
+- **Set**: object that stores a collection of unique data items
+  - All items must be unique
+  - Set is unordered
+  - Elements can be of different data types
+
+\vspace{0.25in}
+Format for creating a set:
+
+- `argument` can be a list, string or tuple (a sequence)
+- if `argument` is a string, each character becomes a set element
+
+\vspace{0.1in}
+```{python, evaluate=True}
+emptyset = set()
+myset = set(['a', 'b', 'c', 'a', 'd'])
+print(myset)
+```
+::::
+:::
+
+# Getting the Number of and Adding and Deleting Elements of Sets
+
+::: columns
+:::: {.column width=60%}
+- `len` function: returns the number of elements in set
+
+\vspace{0.1in}
+
+- Sets are mutable objects
+- `add()` method: adds an element to a set
+- `update()` method adds a group of elements to a set
+  - Arguments must be a sequence containing iterable elements, and each
+    of the elements is added to set
+
+\vspace{0.1in}
+
+- `remove()` and `discard()` methods: remove the specified item from the set
+  - The item that should be removed is passed to both as argument
+  - Behave differently when specified item is not found
+    - `remove()` method raises `KeyError` exception if not found
+    - `discard()` method just quietly ignores request to discard element not in set
+
+::::
+:::: {.column width=35%}
+
+```{python, evaluate=True}
+myset = set()
+myset.add(1)
+myset.add(2)
+set2 = set([2, 4, 6])
+myset.update(set2)
+print(myset)
+print(len(myset))
+myset.remove(2)
+print(myset)
+```
+::::
+:::
+
+# Using the `for` Loop `in` and `not in` Operators With a Set
+
+::: columns
+:::: {.column width=50%}
+- A `for` loop can be used to iterate over elements in a set
+  - General format: `for item in set:`
+  - The loop iterates once for each element in the set
+
+\vspace{0.25in}
+```{python, evaluate=True}
+myset = set(['a', 'b', 'c'])
+for val in myset:
+    print(val)
+```
+::::
+:::: {.column width=50%}
+- The `in` operator can be used to test whether a value exists in a set
+- Similarly the `not in` operator can be used to test whether a value does
+  not exist in a set
+
+\vspace{0.25in}
+```{python, evaluate=True}
+myset = set([1, 2, 3])
+if 1 in myset:
+    print('The value 1 is in the set.')
+
+if 4 not in myset:
+    print('The value 4 is not in the set.')
+```
+::::
+:::
+
+# Set Union, Intersection and Difference
+
+::: columns
+:::: {.column width=32%}
+**Union**: a set that contains all the elements of both sets
+
+- Use either the `union()` member method or the `|` operator
+- Both return a new set which contains union
+
+```{python, evaluate=True}
+set1 = set([1, 2, 3, 4])
+set2 = set([3, 4, 5, 6])
+set3 = set1.union(set2)
+set4 = set2 | set1
+print(set3)
+print(set4)
+```
+::::
+:::: {.column width=33%}
+**Intersection**: a set that contains only the elements found in both sets
+
+- Use either the `intersection()` member method or the `&` operator
+- Both return a new set which contains the intersection
+
+```{python, evaluate=True}
+set3 = set1.intersection(set2)
+set4 = set2 & set1
+print(set3)
+print(set4)
+```
+
+::::
+:::: {.column width=32%}
+**Difference**: a set that contains the elements that appear in the first
+set but do not appear in the second set
+
+- Use either the `difference()` member method or the `-` operator
+  - **Note** unlike union and intersection, difference is not symmetrical 
+```{python, evaluate=True}
+set3 = set1.difference(set2)
+set4 = set2 - set1
+print(set3)
+print(set4)
+```
+
+::::
+:::
+
+# Symmetric Difference and Subsets and Supersets
+
+::: columns
+:::: {.column width=32%}
+**Symmetric difference**: a set that contains the elements that are not shared
+by the two sets
+
+- Use either the `symmetric_difference()` member method or the `^` operator
+::::
+:::: {.column width=32%}
+**Subset**: Set A is a subset of set B if all the elements in set A are included
+in set B
+
+- Use either the `issubset()` member method or the `<=` operator
+::::
+:::: {.column width=32%}
+**Superset**: Set A is a superset of set B if it contains all of the elements of 
+set B
+
+- Use either the `issuperset()` member method or the `>=` operator  
+::::
+:::
+
+# Set Comprehensions
+
+::: columns
+:::: {.column width=50%}
+- **Set comprehension**: a concise expression that creates a new set
+  by iterating over the elements of a sequence
+  - Like list and dictionary comprehensions, except a set comprehension is
+    enclosed in curly braces `{}`
+    - Difference in syntax is don't specify `key: value` in comprehension like a
+      dictionary comprehension
+::::
+:::: {.column width=50%}
+Example make a copy of a set
+\vspace{0.1in}
+
+```{python, evaluate=True}
+set1 = set([1, 2, 3, 4, 5])
+set2 = {item for item in set1}
+print(set2)
+```
+
+\vspace{0.25in}
+Example create a set that contains the squares of the numbers in another set
+\vspace{0.1in}
+
+```{python, evaluate=True}
+set1 = set([1, 2, 3, 4, 5])
+set2 = {item**2 for item in set1}
+print(set2)
+```
+::::
+:::
+
+
+# Summary
+
+- A set contains a collection of unique values and works like a mathematical set
+  - Create a set using the built-in `set()` method
+  - Use `add()` `update()` `remove()` `discard()` to add and remove items from sets
+  - Sets support union, intersection, difference, symmetric difference
+    subsets and supersets, just like a mathematical set
+  - Set comprehensions work similar to list and dictionary comprehensions
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

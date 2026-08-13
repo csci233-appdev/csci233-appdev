@@ -1,0 +1,114 @@
+---
+title: "Ch 09: Serializing Objects"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Serializing Objects (1 of 3)
+
+::: columns
+:::: {.column width=50%}
+## Object Serialization
+
+Serializing an object is the process of converting the object to
+a stream of bytes that can be saved to a file for later retrieval.
+In Python, object serialization is called pickling.
+::::
+:::: {.column width=50%}
+- **Serialize an object**: convert the object to a stream of bytes that
+  can easily be stored in a file
+- **Pickling**: Python name/method for serializing objects to a file
+::::
+:::
+
+# Serializing Objects (2 of 3)
+
+::: columns
+:::: {.column width=38%}
+- To pickle an object
+  - Import the `pickle` module
+  - Open a file for binary writing
+  - Call the `pickle.dump()` function
+  - Close the file
+- You can pickle multiple objects to one file prior to closing the file
+::::
+:::: {.column width=58%}
+```{python, evaluate=False}
+import pickle
+phonebook = {'Chris': '555-1111',
+             'Katie': '555-2222',
+             'Joanne': '555-3333'}
+output_file = open('phonebook.dat', 'wb')
+pickle.dump(phonebook, output_file)
+output_file.close()
+```
+::::
+:::
+
+# Serializing Objects (3 of 3)
+
+::: columns
+:::: {.column width=38%}
+- **Unpickling**: retrieving pickled objects back from files
+- To unpickle an object:
+  - Import the `pickle` module
+  - Open an existing file with pickled data for reading in binary mode
+  - Call the `pickle.load()` function
+  - Close the file
+- You can unpickle multiple objects from the file
+::::
+:::: {.column width=58%}
+```{python, evaluate=False}
+import pickle
+input_file = open('phonebook.dat', 'rb')
+phonebook = pickle.load(input_file)
+input_file.close()
+```
+::::
+:::
+
+# Summary
+
+- Serializing an object is the process of converting an object to
+  a stream of bytes that can be saved to a file
+- You can serialize multiple object to a single file (not shown)
+- The files should be opened in `binary` mode since the data is a stream
+  of bytes
+- `pickle.dump()` will serialize and save a single object to a file
+- `pickle.load()` will do the reverse and unserialize a byte stream from a file back to an object
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

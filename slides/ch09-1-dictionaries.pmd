@@ -1,0 +1,278 @@
+---
+title: "Ch 09: Dictionaries"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Dictionaries
+
+::: columns
+:::: {.column width=30%}
+## Dictionary
+
+A dictionary is an object that stores a collection of data.  Each
+element in a dictionary has two parts: a key and a value.  You use a 
+key to locate a specific value.
+::::
+:::: {.column width=68%}
+- **Dictionary**: object that stores a collection of key/value pairs
+  - Each element consists of a **key** and a **value**
+    - Referred to as: map, associative map,  hash, key-value pair, Dictionary, indexed table, etc.
+    - key must be an immutable object (e.g. string, int, float, tuple, **not** a list)
+  - To retrieve a specific value, need to know and use the key associated with it
+
+\vspace{0.25in}
+Format for creating a dictionary:
+
+\vspace{0.1in}
+```{python, evaluate=False}
+phonebook = {'Chris': '555-1111', 
+             'Katie': '555-2222', 
+             'Joanne': '555-3333'}
+```
+::::
+:::
+
+# Retrieving a Value from a Dictionary
+
+::: columns
+:::: {.column width=40%}
+- Elements in dictionary are unsorted
+  - In fact they are indexed (hashed or a tree) by the key
+
+\vspace{0.25in}
+
+General format for retrieving value from dictionary:
+
+\vspace{0.1in}
+```{python, evaluate=False}
+dictionary[key]
+number = phonebook['Chris']
+```
+
+\vspace{0.25in}
+
+- if `key` is in the dictionary, associated value is returned
+  - if not, a `KeyError` exception is raised
+
+::::
+:::: {.column width=60%}
+- To test whether a `key` is in a dictionary use the `in` and `not in`
+  operators
+  - Helps prevent `KeyError` exceptions
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+if key in phonebook:
+    print(f'{key} number is {phonebook[key]}')
+else:
+    print(f'I do not know {key}')
+```
+::::
+:::
+
+# Adding Elements to an Existing Dictionary
+
+::: columns
+:::: {.column width=50%}
+- Dictionaries are **mutable** objects
+- To add a new key-value pair, simply assign a value to a key:
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+dictionary[key] = value
+phonebook['Joe'] = '555-0123'
+```
+::::
+:::: {.column width=50%}
+- If key exists in the dictionary, the value associated with the 
+  existing key will be changed (e.g. this is a way to modify a record)
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+# modifies phone number if `Chris`
+# already exists
+phonebook['Chris'] = '555-4444' 
+```
+::::
+:::
+
+# Deleting Elements from an Existing Dictionary
+
+- To delete a key-value pair, use the `del` keyword
+
+```{python, evaluate=False}
+del dictionary[key]
+del phonebook['Chris']
+```
+
+- If `key` is not in the dictionary, `KeyError` exception is raised
+  - So usually check using `key in dictionary` before deleting
+
+# Getting the Number of Elements and Mixing Data Types
+
+::: columns
+:::: {.column width=50%}
+- `len` function: used to obtain number of elements in a dictionary
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+num_items = len(phonebook)
+```
+::::
+:::: {.column width=50%}
+- `key`s must be immutable objects, but associated values can be any type
+  of object
+  - One dictionary can include keys of several different immutable types
+    - Though this is an unusual use case
+  - Values stored in a single dictionary can be of different types
+    - Though also this is not a typical thing to do
+::::
+:::
+
+# Creating an Empty Dictionary and Using a `for` Loop to Iterate Over a Dictionary
+
+::: columns
+:::: {.column width=35%}
+- To create an empty dictionary:
+  - use `{}`
+  - Use built-in function `dict()`
+  - Elements can be added to dictionary as program executes
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+# both are commonly seen
+phonebook = {}
+phonebook = dict() 
+```
+::::
+:::: {.column width=65%}
+- Use a for loop to iterate over a dictionary
+
+\vspace{0.25in}
+
+```{python, evaluate=False}
+for name in phonebook:
+    print(f'name: {name} num: {phonebook[name]}')
+```
+::::
+:::
+
+# (Some) Dictionary Methods
+
+| **Method**  | **Description**                                                                      |
+| ----------- | ------------------------------------------------------------------------------------ |
+| `clear()`   | Clears the contents of a dictionary                                                  |
+| `get()`     | Gets the value associated with a specified key, returns default if key not found     |
+| `items()`   | Returns all the keys in a dict and their values as a sequence of tuples              |
+| `keys()`    | Returns all the keys in a dictionary as a tuple                                      |
+| `pop()`     | Returns the value associated with a key and removes the key-value pair from the dict |
+| `popitem()` | Returns, as a tuple, the last added key-value pair and removes it.                   |
+| `values()`  | Returns all the values in dict as a tuple                                            |
+
+See [Python Standard Library Documentation](https://docs.python.org/3/) \parencite{python-library-2026}
+
+# Dictionary Comprehensions (1 of 2)
+
+::: columns
+:::: {.column width=35%}
+## Dictionary Comprehension
+
+A **dictionary comprehension** is an expression that reads a
+sequence of input elements and uses those input elements to
+produce a dictionary. 
+
+
+(Same idea as a list comprehension)
+::::
+:::: {.column width=60%}
+Using a `for` loop:
+\vspace{0.1in}
+```{python, evaluate=False}
+numbers = [1, 2, 3, 4]
+squares = {}
+for item in numbers:
+    squares[item] = item**2
+```
+
+\vspace{0.25in}
+Using a dictionary comprehension:
+\vspace{0.1in}
+```{python, evaluate=False}
+squares = {item: item**2 for item in numbers}
+```
+::::
+:::
+
+# Dictionary Comprehensions (2 of 2)
+
+Example: create dictionary of string keys and their lengths as values
+\vspace{0.1in}
+```{python, evaluate=True}
+names = ['Jeremy', 'Kate', 'Peg']
+str_lengths = {item: len(item) for item in names}
+print(str_lengths)
+```
+
+\vspace{0.25in}
+
+Example: making a copy of a dictionary
+\vspace{0.1in}
+```{python, evaluate=True}
+dict1 = {'A': 1, 'B': 2, 'C': 3}
+dict2 = {k:v for k,v in dict1.items()}
+print(dict2)
+```
+
+# Summary
+
+- A dictionary is collection that stores key-value pairs
+  - You can lookup items using the dictionary key
+  - You can add or modify items in a dictionary by (re)assigning the key to a value
+  - You can use the `in` and `not in` operators to test if a `key` is present or not
+  - You can use the `del` keyword to remove key-value pairs from a dictionary
+- Dictionaries are collection objects that have a lot of useful member methods
+  - Among these are `get()`, `items()`, `keys()`, `values()`
+- Dictionary comprehensions are a part of the syntax, and work similar to
+  list comprehensions
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

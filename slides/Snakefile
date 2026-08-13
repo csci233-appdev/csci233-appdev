@@ -24,7 +24,10 @@ rule all:
 			 "ch06-3_4-file-records-exceptions.pdf", \
 			 "ch07-1_4-lists-sequences-slicing.pdf", \
 			 "ch07-5_9-list-methods-processing.pdf", \
-			 "ch07-10_11-tuples-matplotlib.pdf"]
+			 "ch07-10_11-tuples-matplotlib.pdf", \
+			 "ch09-1-dictionaries.pdf", \
+			 "ch09-2-sets.pdf", \
+			 "ch09-3-serializing-objects.pdf"]
 
 rule pmd_to_md:
 	input:  "{file}.pmd"
