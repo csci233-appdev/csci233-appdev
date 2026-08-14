@@ -47,6 +47,7 @@ some built-in functions that are useful for working with lists.
 | `remove(item)`       | Removes the first occurrence of `item` from the list.                     |
 | `reverse()`          | Reverses the order of the items in the list.                              |
 
+See [Python Standard Library Documentation](https://docs.python.org/3/) \parencite{python-library-2026}
 
 # Useful Built-in Functions for Lists
 
@@ -113,7 +114,7 @@ assignment of the lists is doing here.
 A list comprehension is a concise expression that creates
 a new list by iterating over the elements of an existing list.
 ::::
-:::: {.column width=68%}
+:::: {.column width=60%}
 Using a for loop
 
 ```{python, evaluate=False}

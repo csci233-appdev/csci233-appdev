@@ -7,10 +7,8 @@ def main():
     plt.figure(figsize=(12, 12))
     plt.rcParams['font.size'] = 24
 
-    # Create a list with the X coordinates of each bar's center.
-    # NOTE: behavior has changed from when text was made?
-    # these are the locations of center of the bars that are drawn
-    centers = [5, 15, 25, 35, 45]
+    # Create a list with the X coordinates of each bar's left edge
+    left_edges = [0, 10, 20, 30, 40]
 
     # Create a list with the heights of each bar.
     heights = [100, 200, 300, 400, 500]
@@ -20,8 +18,9 @@ def main():
 
     # Build the bar chart.
     # NOTE: need to add in edge color to reproduce figure in text
-    plt.bar(centers, heights, bar_width, color=(
-        'r', 'g', 'b', 'w', 'k'), edgecolor='black', linewidth=3)
+    # NOTE: alignment needs to be changed to reproduce text
+    plt.bar(left_edges, heights, bar_width, color=('r', 'g', 'b', 'w', 'k'),
+            edgecolor='black', linewidth=3, align='edge')
 
     # Add a title.
     plt.title('Sales by Year')

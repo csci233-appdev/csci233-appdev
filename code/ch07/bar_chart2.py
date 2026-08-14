@@ -7,10 +7,8 @@ def main():
     plt.figure(figsize=(12, 12))
     plt.rcParams['font.size'] = 24
 
-    # Create a list with the X coordinates of each bar's center.
-    # NOTE: behavior has changed from when text was made?
-    # these are the locations of center of the bars that are drawn
-    centers = [2.5, 12.5, 22.5, 32.5, 42.5]
+    # Create a list with the X coordinates of each bar's left edge
+    left_edges = [0, 10, 20, 30, 40]
 
     # Create a list with the heights of each bar.
     heights = [100, 200, 300, 400, 500]
@@ -19,7 +17,8 @@ def main():
     bar_width = 5
 
     # Build the bar chart.
-    plt.bar(centers, heights, bar_width)
+    # Note changed alignment
+    plt.bar(left_edges, heights, bar_width, align='edge')
 
     # Display the bar chart.
     plt.show()

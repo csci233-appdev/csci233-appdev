@@ -80,6 +80,9 @@ Advantages of tuples over lists:
 import matplotlib.pyplot as plt
 ```
 
+Consult the [Matplotlib documentation](https://matplotlib.org/stable/index.html)
+for reference and more plot types \parencite{matplotlib-docs-2026}.
+
 # Plotting a Line Graph with the `plot()` Function
 
 ::: columns
@@ -158,7 +161,7 @@ plt.title('Sales by Quarter')
 - Has several advantages over a list, and must be used in some situations
 - You can use the `matplotlib.pyplot` library module to perform basic plotting
   - Basically plot functions take sequences (lists or tuples) to specify
-    (x,y) coordinates or other plot elements
+    (x,y) coordinates, bar location and height, or other plot elements
   - Can plot line graphs, bar charts, pie charts, and many more not shown
 
 # References

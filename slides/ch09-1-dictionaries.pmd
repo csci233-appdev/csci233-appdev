@@ -41,9 +41,12 @@ key to locate a specific value.
 :::: {.column width=68%}
 - **Dictionary**: object that stores a collection of key/value pairs
   - Each element consists of a **key** and a **value**
-    - Referred to as: map, associative map,  hash, key-value pair, Dictionary, indexed table, etc.
+    - Referred to as: map, [associative array](https://en.wikipedia.org/wiki/Associative_array), 
+      hash, key-value pair, Dictionary, indexed table, etc. \parencite{wikipedia-associative-array-2026}
     - key must be an immutable object (e.g. string, int, float, tuple, **not** a list)
   - To retrieve a specific value, need to know and use the key associated with it
+  - Access by key is constant or $log N$ time depending on implementation,
+    much faster than sequential access
 
 \vspace{0.25in}
 Format for creating a dictionary:
