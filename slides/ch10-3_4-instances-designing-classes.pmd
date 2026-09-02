@@ -152,7 +152,17 @@ Typically involves identifying the real-world objects that are in the problem
 
 # Summary
 
-- 
+- Each instance of a class has its own set of data attributes
+  - Thus if you create multiple instances, each is separate from the other
+    and maintains its own private state
+- Typically all of a classes attributes are private (encapsulation and hiding)
+  - Thus accessors and mutators are provided by objects for attributes that need to be
+    seen and set by external entities to the class
+- Objects can be passed as arguments to functions (or to other class member methods), just like
+  lists, dictionaries, etc.
+- In Object-oriented analysis and design you
+  - Find the classes in the problem that need to be modeled
+  - Identify each classes responsibilities, things it knows (its state) and actions it can take
 
 
 # References
