@@ -1,0 +1,164 @@
+---
+title: "Ch 11: Inheritance and Polymorphism"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to Inheritance
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Inheritance
+
+Inheritance allows a new class to extend an existing class.  The
+new class inherits the members of the class it extends.
+:::
+In the real world, many objects are specialized versions of more general objects
+
+- Example: grasshoppers and bees are specialized types of insect
+- In addition to the general insect characteristics, they have unique characteristics:
+  - Grasshoppers can jump
+  - Bees can sting, make honey, and build hives
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.5]{figures/ch11-fig-11-1-insect-inheritance}
+\label{fig:ch11-fig-11-1-insect-inheritance}
+\caption{Bumblebees and grasshoppers are specialized versions of an insect \parencite[pg.606]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Inheritance and the "Is a" Relationship
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## "is a" relationship
+Exists when one object is a specialized version of another object
+
+  - Specialized object has all the characteristics of the general object
+  - Rectangle is a Shape, Daisy is a Flower
+:::
+
+\tiny
+For example, need to create classes for cars, trucks and SUVS
+
+- All are automobiles
+  - \tiny make, year, model, mileage, and price
+  - These can be attributes for the base class
+- In addition
+  - \tiny Car has a number of doors
+  - Pickup truck has a drive type
+  - SUV has a passenger capacity
+::::
+:::: {.column width=50%}
+- **Inheritance**: used to create an "is a" relationship between classes
+- **Superclass** (base class, parent class): a (more) general class
+- **Subclass** (derived class, child class): a specialized class
+  - Extends the superclass
+    - Inherits attributes and methods of the superclass
+    - New attributes and methods can be added
+
+\vspace{0.1in}
+\tiny
+- To indicate inheritance, the superclass name is placed in parentheses after subclass name
+  - `class Car(Automobile)`
+- The initializer method of a subclass calls the initializer method of the superclass and then
+  initializes unique data attributes
+- Add method definitions for unique methods
+::::
+:::
+
+# Inheritance in UML Diagrams
+
+::: columns
+:::: {.column width=33%}
+## UML Diagram Inheritance
+
+In UML diagram, show inheritance by drawing a line with an open arrowhead
+from subclass to superclass
+::::
+:::: {.column width=66%}
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch11-fig-11-2-uml-inheritance}
+\label{fig:ch11-fig-11-2-uml-inheritance}
+\caption{UML diagram showing inheritance \parencite[pg.615]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Polymorphism
+
+::: columns
+:::: {.column width=50%}
+- **Polymorphism**: an object's ability to take different forms
+- Essential ingredients of polymorphic behavior:
+  - Ability to define a method in a superclass and override it in a subclass
+    - Subclass defines method with the same name
+  - Ability to call the correct version of the overridden method depending on
+    the type of object that called it
+::::
+:::: {.column width=50%}
+- In previous inheritance examples showed how to override the `__init__()` method
+  - Called superclass `__init__()` method and then added onto that
+- The same can be done for any other method
+  - The method can call the superclass equivalent and add to it, or do 
+    something completely different
+::::
+:::
+
+# The `isinstance()` Function
+
+- Polymorphism provides great flexibility when designing programs
+- **`AttributeError` exception**: raised when a method receives an object
+  which is not an instance of the right class
+- **`isinstance()` function**: determines whether object is an instance of a class
+  - Format: `isinstance(object, class)`
+
+# Summary
+
+- Inheritance allows a new class to extend an existing class.  The new class
+  inherits the members (data and methods) of the class it extends.
+- The "is a" relationship exists when one object is a specialized version
+  of another object (inherits all properties of the base class, and extends it).
+- Polymorphism is an object's ability to take different forms
+  - Overridden methods in subclasses should be invoked if polymorphic
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+
