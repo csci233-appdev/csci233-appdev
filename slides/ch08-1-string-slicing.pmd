@@ -1,0 +1,154 @@
+---
+title: "Ch 08: String Slicing"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Basic String Operations
+
+::: columns
+:::: {.column width=33%}
+## Strings
+
+Python provides several ways to access the individual characters in a string.
+Strings also have methods that allow you to perform operations on them.
+::::
+:::: {.column width=65%}
+- Many types of programs perform operations on strings
+- In Python, many tools for examining and manipulating strings
+  - Strings are sequences, so many of the tools that work with sequences work with strings
+::::
+:::
+
+# Accessing the Individual Characters in a String (1 of 3)
+
+::: columns
+:::: {.column width=35%}
+- Use a `for` loop
+  - Format: `for character in my_string:`
+  - Useful when need  to iterate over the whole string, such as count occurrences of a specific character
+::::
+:::: {.column width=62%}
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch08-fig-8-1-iterate-over-string}
+\label{fig:ch08-fig-8-1-iterate-over-string}
+\caption{Iterating over the string Juliet \parencite[pg.455]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Accessing the Individual Characters in a String (2 of 3)
+
+::: columns
+:::: {.column width=35%}
+- Use indexing
+  - Each character has an index (like a tuple or list sequence) specifying its position
+  - 0 based indexing, as for all Python sequences
+  - Format: `character = my_string[6]`
+::::
+:::: {.column width=62%}
+\begin{figure}
+\includegraphics[scale=0.66]{figures/ch08-fig-8-2-string-indexes}
+\includegraphics[scale=0.66]{figures/ch08-fig-8-3-string-indexes}
+\label{fig:ch08-fig-8-2-string-indexes}
+\caption{String indexes \parencite[pg.457]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Accessing the Individual Characters in a String (3 of 3)
+
+- `IndexError` exception will occur if:
+  - You try to use an index that is out of range for the string
+  - Likely to happen when loop iterates beyond the end of the string
+  - Of course this is true of any sequence access using too large of an index
+- `len(string)` function can be used to obtain the length of a string
+  - Useful to prevent loops from iterating beyond the end of a string
+
+# String Concatenation
+
+- **Concatenation**: appending one string to the end of another string
+  - Use the + operator to produce a string that is a combination of its operands
+  - The augmented assignment operator `+=` can also be used to concatenate strings
+    - The operand on the left side of the `+=` operator must be an existing variable,
+      otherwise an exception is raised
+
+# Strings are Immutable
+
+::: columns
+:::: {.column width=50%}
+- Strings are an immutable sequence (like tuple)
+  - Once they are created, they cannot be changed
+    - Concatenation doesn't actually change the existing string, but rather creates a new
+      string and assigns the new string to the previously used variable
+  - Cannot use an expression of the form
+  - `string[index] = new_character`
+    - Statement of this type will raise an exception
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.66]{figures/ch08-fig-8-4-immutable-string}
+\includegraphics[scale=0.66]{figures/ch08-fig-8-5-immutable-string}
+\label{fig:ch08-fig-8-4-immutable-string}
+\caption{The string Carmen Brown from concatenation actually creates a new string \parencite[pg.460]{gaddis-2021}}
+\end{figure}::::
+:::
+
+# String Slicing
+
+- **Slice**: span of items taken from a sequence, known as *substring*
+  - Slicing format: `string[start : end]`
+    - Expression will return a (new) string containing a copy of the characters from `start` up to but not
+      including `end`
+    - If `start` not specified, 0 is used for `start` index
+    - If `end` not specified, len(string) is used for `end` index
+  - Slicing expressions can include a step value and negative indexes relative to end of string
+    - Same as list slicing we covered previously
+
+
+
+# Summary
+
+- `string` types in Python are immutable sequences
+  - So many of the tools and syntax we discussed about sequences (like lists and tuples) apply
+- Can iterate over the characters of a string with a `for` loop
+- Can access characters in a string sequence using integer index
+- Strings can be concatenated using the `+` operator
+- However, strings are an immutable type, for example you can't use index into a string to change a character in the string
+- String slicing also works as we saw for other sequence types, `string[start : end]`
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+
