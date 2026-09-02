@@ -31,6 +31,7 @@ rule all:
 			 "ch09-2-sets.pdf", \
 			 "ch09-3-serializing-objects.pdf", \
 			 "ch10-1_2-oop-classes.pdf", \
+			 "ch10-3_4-instances-designing-classes.pdf", \
 			]
 
 rule pmd_to_md:
