@@ -29,6 +29,7 @@ rule all:
 			 "ch09-2-sets.pdf", \
 			 "ch09-3-serializing-objects.pdf", \
 			 "ch08-1-string-slicing.pdf", \
+			 "ch08-2-string-methods.pdf", \
 			]
 
 rule pmd_to_md:
