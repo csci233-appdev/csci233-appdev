@@ -1,0 +1,245 @@
+---
+title: "Ch 12: Introduction to Recursion"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Introduction to Recursion
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Recursion
+
+A recursive function is a function that calls itself.
+:::
+\begin{figure}
+\includegraphics[scale=0.28]{figures/ch12-fig-12-2-recursion-depth}
+\label{fig:ch12-fig-12-2-recursion-depth}
+\caption{Six calls to the message function \parencite[pg.633]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- Recursive function **must** have a way to control the number of times it repeats
+  - Usually involves an `if-else` statement which defines when the function should return
+    a value and when it should call itself
+- **Depth of recursion**: the number of times a function calls itself
+\vspace{0.2in}
+\begin{figure}
+\includegraphics[scale=0.28]{figures/ch12-fig-12-3-recursive-function}
+\label{fig:ch12-fig-12-3-recursive-function}
+\caption{Control returns to the point after the recursive function call \parencite[pg.634]{gaddis-2021}}
+\end{figure}
+::::
+::::
+:::
+
+# Problem Solving with Recursion
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Recursive Problem Solving
+
+A problem can be solved with recursion if it can be broken down into
+smaller problems that are identical in structure to the overall problem.
+:::
+- Recursion is a powerful tool for solving repetitive problems
+- Recursion is never required to solve a problem
+  - Any problem that can be solved recursively can be solved with a loop
+  - Recursive algorithms usually less efficient than iterative ones
+    - Due to overhead of each function call
+::::
+:::: {.column width=50%}
+- Some repetitive problems are more easily solved (or stated) with recursion
+- General outline of a recursive function:
+  - If the problem can be solved now without recursion, sole and return
+    - Known as the **base case**
+  - Otherwise, reduce problem to smaller problem(s) of the same structure and call the function
+    again to solve the smaller problem
+    - Known as the **recursive case**
+::::
+:::
+
+# Using Recursion to Calculate the Factorial of a Number (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+- In mathematics, the $n!$ notation represents the factorial of a number $n$
+  - For $n = 0$, $n! = 1$
+  - For $n > 0$, $n! = 1 \times 2 \times 3 \cdots \times n$
+- The above definition lends itself to recursive programming
+  - $n = 0$ is the **base case**
+  - $n > 0$ is the **recursive case**
+
+\vspace{0.2in}
+`factorial(n) = n x factorial(n - 1)`
+::::
+:::: {.column width=50%}
+```{python, evaluate=False}
+# The factorial function uses recursion
+# to calculate the factorial of its
+# argument, which is nonnegative.
+def factorial(num):
+    if num == 0:
+        return 1
+    else:
+        return num * factorial(num - 1)
+```
+::::
+:::
+
+# Using Recursion to Calculate the Factorial of a Number (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.28]{figures/ch12-fig-12-4-factorial-recursion}
+\label{fig:ch12-fig-12-3-factorial-recursion}
+\caption{The value of num and the return value during each call of function \parencite[pg.637]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- Since each call to the recursive function reduces the problem:
+  - Eventually it will get to the base case which does not require recursion,
+    and the recursion will stop
+- Usually the problem is reduced by making one or more parameters smaller at each
+  function call
+
+\vspace{0.2in}
+\tiny
+```{python, evaluate=False}
+# The factorial function uses recursion
+# to calculate the factorial of its
+# argument, which is nonnegative.
+def factorial(num):
+    if num == 0:
+        return 1
+    else:
+        return num * factorial(num - 1)
+```
+::::
+:::
+
+# Direct and Indirect Recursion
+
+- **Direct recursion**: when a function directly calls itself
+  - All the examples shown so far were of direct recursion
+- **Indirect recursion**: when function `A` calls function `B`
+  which in turn calls function `A`
+
+# Examples of Recursive Algorithms
+
+::: columns
+:::: {.column width=40%}
+- Summing a range of list elements with recursion
+  - Function receives a list containing range of elements to be
+    summed, index of starting item in the range, and index of ending
+    item in the range
+  - Base case:
+    - `if start > end return 0`
+  - Recursive case:
+    - `return list[start] + sum(list, start+1, end)`
+::::
+:::: {.column width=60%}
+```{python, evaluate=False}
+# The range_sum function returns the sum
+# of a range of items in num_list.  start
+# specifies the index of the starting item.  
+# end specifies the index of the ending item.
+def range_sum(num_list, start, end):
+    if start > end:
+        return 0
+    else:
+        return num_list[start] + 
+            range_sum(num_list, start+1, end)
+```
+::::
+:::
+
+# The Fibonacci Series
+
+::: columns
+:::: {.column width=50%}
+- Fibonacci series: has two base cases
+  - `if n = 0 then Fib(n) = 0`
+  - `if n = 1 then Fib(n) = 1`
+  - `if n > 1 then Fib(n) = Fib(n-1) + Fib(n-2)`
+::::
+:::: {.column width=50%}
+```{python, evaluate=False}
+# The fib function returns the nth 
+# number in the Fibonacci series
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+```
+::::
+:::
+
+# Finding the Greatest Common Divisor
+
+::: columns
+:::: {.column width=50%}
+- Calculation of the greatest common divisor (GCD) of two positive
+  integers
+  - If `x` can be evenly divided by `y` then `gcd(x,y) = y`
+  - Otherwise, `gcd(x,y) = gcd(y, remainder of x/y)`
+::::
+:::: {.column width=50%}
+```{python, evaluate=False}
+# The gcd function returns the greatest
+# common divisor of two numbers.
+def gcd(x, y):
+    if x % y == 0:
+        return y
+    else:
+        return gcd(x, x % y)
+```
+::::
+:::
+
+
+# Summary
+
+- 
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

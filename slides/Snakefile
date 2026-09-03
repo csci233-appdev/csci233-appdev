@@ -33,6 +33,7 @@ rule all:
 			 "ch10-1_2-oop-classes.pdf", \
 			 "ch10-3_4-instances-designing-classes.pdf", \
 			 "ch11-1_2-inheritance.pdf", \
+			 "ch12-1_3-recursion.pdf", \
 			]
 
 rule pmd_to_md:
