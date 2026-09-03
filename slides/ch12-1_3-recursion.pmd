@@ -227,10 +227,58 @@ def gcd(x, y):
 ::::
 :::
 
+# The Towers of Hanoi
+
+::: columns
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.28]{figures/ch12-fig-12-5-towers-hanoi}
+\label{fig:ch12-fig-12-5-towers-hanoi}
+\caption{The pegs and discs in the Tower of Hanoi game \parencite[pg.642]{gaddis-2021}}
+\end{figure}
+
+Game commonly used to illustrate recursion
+
+- Three pegs and discs of decreasing size
+- **Goal**: move the discs from leftmost to rightmost peg
+  - Only one disc can be moved at a time
+  - A disc cannot be placed on top of a smaller disc
+  - All discs must be on a peg except while being moved
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.15]{figures/ch12-fig-12-6-towers-hanoi-recursion}
+\label{fig:ch12-fig-12-6-towers-hanoi-recursion}
+\caption{Steps moving three \parencite[pg.643]{gaddis-2021}}
+\end{figure}
+
+**Problem statement**: move n discs from peg 1 to peg 3 using peg 2 as temporary peg
+
+- if `n == 1`: Move disc from peg 1 to 3
+- Otherwise:
+  - Move `n - 1` discs from peg 1 to peg 2 using peg 3
+  - Move remaining disc from peg 1 to peg 3
+  - Move `n - 1` discs from peg 2 to peg 3 using peg 1
+::::
+:::
+
+# Recursion vs. Looping
+
+- Reasons not to use recursion:
+  - Less efficient, entails function calling overhead that is not necessary with a loop
+  - Usually a solution using a loop is more evident than a recursive solution (?)
+- Some problems are more easily solved with recursion than a loop
+  - Example: Fibonacci, where the mathematical definition lends itself to recursion
 
 # Summary
 
-- 
+- A recursive function is a function that calls itself
+- Recursive function **must** have a way to control the number of times it repeats
+  - **base case**: problem can be solved immediately, return solution
+  - **recursive case**: reduce to a smaller problem(s) and call function again
+- Recursion can be less efficient than a loop because of function call overhead
+- On the other hand, certain problems are naturally defined in terms of recursive solutions
+  - Especially in computer science
 
 # References
 \tiny
