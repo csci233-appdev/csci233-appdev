@@ -3,7 +3,7 @@
 
 
 class Automobile:
-    # The _ _init_ _method accepts arguments for the
+    # The __init__method accepts arguments for the
     # make, model, mileage, and price. It initializes
     # the data attributes with these values.
     def __init__(self, make, model, mileage, price):
@@ -47,12 +47,12 @@ class Car(Automobile):
     # The __init__ method accepts arguments for the
     # car's make, model, mileage, price, and doors.
     def __init__(self, make, model, mileage, price, doors):
-        # Call the superclass's _ _init_ _ method and pass
+        # Call the superclass's __init__ method and pass
         # the required arguments. Note that we also have
         # to pass self as an argument.
         Automobile.__init__(self, make, model, mileage, price)
 
-        # Initialize the _ _doors attribute.
+        # Initialize the __doors attribute.
         self.__doors = doors
 
     # The set_doors method is the mutator for the
@@ -77,7 +77,7 @@ class Truck(Automobile):
         # to pass self as an argument.
         Automobile.__init__(self, make, model, mileage, price)
 
-        # Initialize the _ _drive_type attribute.
+        # Initialize the __drive_type attribute.
         self.__drive_type = drive_type
 
     # The set_drive_type method is the mutator for the
@@ -94,11 +94,11 @@ class Truck(Automobile):
 # The SUV class represents a sport utility vehicle. It
 # is a subclass of the Automobile class.
 class SUV(Automobile):
-    # The _ _init_ _ method accepts arguments for the
+    # The __init__ method accepts arguments for the
     # SUV's make, model, mileage, price, and passenger
     # capacity.
     def __init__(self, make, model, mileage, price, pass_cap):
-        # Call the superclass's _ _init_ _ method and pass
+        # Call the superclass's __init__ method and pass
         # the required arguments. Note that we also have
         # to pass self as an argument.
         Automobile.__init__(self, make, model, mileage, price)

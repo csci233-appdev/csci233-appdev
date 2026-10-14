@@ -6,8 +6,9 @@ import random
 # The Coin class simulates a coin that can
 # be flipped.
 
+
 class Coin:
-    # The _ _init_ _ method initializes the
+    # The __init__ method initializes the
     # __sideup data attribute with ‘Heads’.
     def __init__(self):
         self.__sideup = 'Heads'
@@ -26,5 +27,3 @@ class Coin:
     # referenced by sideup.
     def get_sideup(self):
         return self.__sideup
-
-    

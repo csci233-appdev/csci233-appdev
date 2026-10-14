@@ -6,7 +6,7 @@ def main():
 
     # Get the sum of the items at indexes 2
     # through 5.
-    my_sum = range_sum(numbers, 2, 5)
+    my_sum = range_sum(numbers, 0, len(numbers)-1)
 
     # Display the sum.
     print(f'The sum of items 2 through 5 is {my_sum}.')

@@ -92,6 +92,7 @@ smaller problems that are identical in structure to the overall problem.
 - In mathematics, the $n!$ notation represents the factorial of a number $n$
   - For $n = 0$, $n! = 1$
   - For $n > 0$, $n! = 1 \times 2 \times 3 \cdots \times n$
+  - For $n > 0$, $n! = n \times (n-1)!$
 - The above definition lends itself to recursive programming
   - $n = 0$ is the **base case**
   - $n > 0$ is the **recursive case**

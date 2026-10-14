@@ -42,6 +42,7 @@
         "randint",
         "randrange",
         "rstrip",
+        "sideup",
         "startswith",
         "unpickle",
         "Unpickling",

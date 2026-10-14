@@ -2,10 +2,12 @@
 # from the Fibonacci series.
 
 def main():
-    print('The first 10 numbers in the')
-    print('Fibonacci series are:')
-    for number in range(1, 11):
-        print(fib(number))
+    # print('The first 10 numbers in the')
+    # print('Fibonacci series are:')
+    # for number in range(1, 11):
+    #    print(fib(number))
+    num = int(input('Which fibonacci number do you want to calculate: '))
+    print(f'The {num}th fibonacci number is: {fib(num)}')
 
 
 # The fib function returns the nth number
