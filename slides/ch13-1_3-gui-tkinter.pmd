@@ -1,0 +1,236 @@
+---
+title: "Ch 13: Graphical User Interface (GUI) Programming and tkinter Module"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Graphical User Interfaces (1 of 3)
+
+::: columns
+:::: {.column width=33%}
+## Graphical User Interface (GUI)
+
+A graphical user interface allows the user to interact with the operating system and
+other programs using graphical elements such as icons, buttons and dialog boxes.
+::::
+:::: {.column width=66%}
+- **User interface**: the part of the computer with which the user interacts
+- **Command line interface**: displays a prompt and the user types a command that is then executed
+- **Graphical User Interface (GUI)**: allows users to interact with a program through graphical
+  elements on the screen
+::::
+:::
+
+# Graphical User Interfaces (2 of 3)
+
+- Command line interfaces
+
+\begin{figure}
+\includegraphics[scale=0.50]{figures/ch13-fig-13-1-command-line-interface}
+\label{fig:ch13-1-command-line-interface}
+\caption{A command line interface \parencite[pg.652]{gaddis-2021}}
+\end{figure}
+
+# Graphical User Interfaces (3 of 3)
+
+::: columns
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.48]{figures/ch13-fig-13-2-dialog-box}
+\label{fig:ch13-2-dialog-box}
+\caption{A dialog box \parencite[pg.652]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- **Dialog boxes**: small windows that display information and allow the user to
+  perform actions
+  - Responsible for most of the interaction through a GUI
+  - User interacts with graphical elements such as icons, buttons and sliders
+::::
+:::
+
+# GUI Programs are Event-Driven
+
+::: columns
+:::: {.column width=66%}
+- In text-based (command line driven) environments, programs determine the order in which
+  things happen
+  - The user can only enter data in the order requested by the program (e.g. sequence of prompts)
+- GUI environments is **event-driven**
+  - The user determines the order in which things happen
+  - User causes events to take place and the program responds to the events
+::::
+:::: {.column width=33%}
+\begin{figure}
+\includegraphics[scale=0.33]{figures/ch13-fig-13-3-tkinter-gui-program}
+\label{fig:ch13-3-tkinter-gui-program}
+\caption{A basic Python tkinter GUI program \parencite[pg.653]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Using the Python `tkinter` Module (1 of 3)
+
+- No GUI programming features built into Python
+- **`tkinter` module**: allows you to create a simple GUI program
+  - Comes with Python
+- **Widget**: a graphical element that the user can interact with or view
+  - Presented by a GUI program
+
+# Using the Python `tkinter` Module (2 of 3)
+
+\tiny
+| **Widget**    | **Description**                                                                                                                                          |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Button`      | A button that can cause an action to occur when it is clicked.                                                                                           |
+| `Canvas`      | A rectangular area that can be used to display graphics.                                                                                                 |
+| `Checkbutton` | A button that may be in either the "on" or "off" position.                                                                                               |
+| `Entry`       | An area in which the user may type a single line of input from the keyboard.                                                                             |
+| `Frame`       | A container that can hold other widgets.                                                                                                                 |
+| `Label`       | An area that displays one line of text or an image.                                                                                                      |
+| `Listbox`     | A list from which the user may select an item.                                                                                                           |
+| `Menu`        | A list of menu choices that are displayed when the user clicks a `Menubutton` widget.                                                                    |
+| `Menubutton`  | A menu that is displayed on the screen and may be clicked by the user.                                                                                   |
+| `Message`     | Displays multiple lines of text.                                                                                                                         |
+| `Radiobutton` | A widget that can be either selected or deselected.  `Radiobutton` widgets usually appear in groups and allow the user to select one of several options. |
+| `Scale`       | A widget that allows the user to select a value by moving a slider along a track.                                                                        |
+| `Scrollbar`   | Can be used with some other types of widgets to provide scrolling ability.                                                                               |
+| `Text`        | A widget that allows the user to enter multiple lines of text input.                                                                                     |
+| `Toplevel`    | A container, like a `Frame`, but displayed in its own window.                                                                                            |
+
+Table: Some `tkinter` widgets
+
+# Using the Python `tkinter` Module (3 of 3)
+
+- Programs that use `tkinter` do not always run reliable under IDLE (or in containers).
+  - For best results run them from the operating system command prompt
+  - For containers, may need to ensure that external display of gui widgets (X windows config) is configured properly
+- Most programmers take an object-oriented approach when writing GUI programs
+  - `__init__` method builds the GUI
+  - When an instance is created the GUI appears on the screen
+
+# Display Text with `Label` Widgets
+
+- **`Label` widget**: displays a single line of text in a window
+  - Made by creating an instance of `tkinter` module's `Label` class
+  - Format: `tkinter.Label(self.main_window, text='my text')`
+  - First argument references the root widget, second argument shows text that should appear in label
+- **`pack()` method**: determines where a widget should be positioned and makes it visible when the main window
+  is displayed
+  - Called for each widget in a window
+  - Receives an argument to specify positioning
+    - Positioning depends n the order in which widgets were added to the main window
+    - Valid arguments: `side='top'`, `side='left'`, `side='right'`
+
+# Adding Borders to Labels
+
+::: columns
+:::: {.column width=66%}
+- When creating a `Label` widget, you can  use the `borderwidth` and `relief` arguments
+  to display a border around the label
+- The `borderwidth` argument specifies the width of the border in pixels
+- The `relief` argument specifies the border style
+::::
+:::: {.column width=33%}
+\begin{figure}
+\includegraphics[scale=0.5]{figures/ch13-fig-13-11-label-relief-styles}
+\label{fig:ch13-11-label-relief-styles}
+\caption{Examples of different styles of borders \parencite[pg.661]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Internal and External Padding (1 of 2)
+
+- **Padding**: space that appears around a widget
+  - **Internal padding** appears around the inside edge of a widget
+  - **External padding** appears around the outside edge of a widget
+
+\begin{figure}
+\includegraphics[scale=0.7]{figures/ch13-fig-13-12-padding}
+\label{fig:ch13-12-padding}
+\caption{Internal and external padding \parencite[pg.662]{gaddis-2021}}
+\end{figure}
+
+
+# Internal and External Padding (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+- To add horizontal internal padding to a widget, pass the argument `ipadx=n` to the widget's pack method
+- To add vertical internal padding pass the argument `ipady=n` to the widget's pack method
+
+\begin{figure}
+\includegraphics[scale=0.30]{figures/ch13-fig-13-13-internal-padding}
+\label{fig:ch13-13-internal-padding}
+\caption{Horizontal and vertical internal padding \parencite[pg.662]{gaddis-2021}}
+\end{figure}
+
+::::
+:::: {.column width=50%}
+- To add horizontal external padding to a widget, pass the argument `padx=n` to the widget's pack method
+- To add vertical external padding pass the argument `pady=n` to the widget's pack method
+
+\begin{figure}
+\includegraphics[scale=0.28]{figures/ch13-fig-13-15-external-padding}
+\label{fig:ch13-15-external-padding}
+\caption{Horizontal and vertical external padding \parencite[pg.664]{gaddis-2021}}
+\end{figure}
+
+::::
+:::
+
+# Summary
+
+- The **user interface** is the part of the computer with which the user interacts
+- A **graphical user interface** or **GUI** allows users to interact with a program through graphical elements
+  on the screen
+- GUIs are inherently **event-driven**, this means that the user determines the order and timing of when
+  to interact with and cause things to happen
+  - This requires an **event-loop** with callbacks to handle GUI interface interactions
+- The `tkinter` module provides basic GUI elements and is available in the base Python packaging system
+  - But there are more modern looking extensions, see [customtkinter](https://customtkinter.tomschimansky.com/)
+    \parencite{customtkinter-docs-2026} for example
+- Most programmers prefer to take an object-oriented approach when writing a GUI program
+  - For Python `tkinter` this usually means creating GUI elements in `__init__` method
+  - as well as usually starting the main event loop after GUI elements are created
+- Use the `tkinter` `Label` widget to display text in a window
+  - You arrange widgets by calling `pack()` with various positioning arguments
+  - Order you add widgets to a container will effect layout (sometimes, e.g. see grids)
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

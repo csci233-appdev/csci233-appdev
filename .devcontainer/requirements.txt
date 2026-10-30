@@ -1,3 +1,5 @@
 wheel==0.40.0
 pytest
 matplotlib
+tk
+customtkinter
