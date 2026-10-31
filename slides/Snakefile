@@ -35,6 +35,7 @@ rule all:
 			 "ch11-1_2-inheritance.pdf", \
 			 "ch12-1_3-recursion.pdf", \
 			 "ch13-1_3-gui-tkinter.pdf", \
+			 "ch13-4_7-frames-buttons-text.pdf", \
 			]
 
 rule pmd_to_md:

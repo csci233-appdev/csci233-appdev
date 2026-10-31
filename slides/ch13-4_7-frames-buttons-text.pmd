@@ -1,0 +1,65 @@
+---
+title: "Ch 13: Python `tkinter` Frames, Buttons and Text I/O"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Summer 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Organizing Widgets with Frames
+
+::: columns
+:::: {.column width=50%}
+- **Frame widget**: container that holds other widgets
+  - Useful for organizing and arranging groups of widgets in a window
+  - The contained widgets are added to the frame widget which contains them
+  - Example: `tkinter.Label(self.top_frame, text='hi')`
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch13-fig-13-19-frame-arrangement}
+\label{fig:ch13-19-frame-arrangement}
+\caption{Arrangement of widgets using a frame \parencite[pg.669]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Summary
+
+- pont1
+- point2
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+
