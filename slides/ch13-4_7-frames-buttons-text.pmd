@@ -46,10 +46,145 @@ header-includes:
 ::::
 :::
 
+# `Button` Widgets
+
+::: columns
+:::: {.column width=33%}
+::: {.block}
+## Buttons
+
+You use the `Button` widget to create a standard button in a window.
+When the user clicks a button, a specified function or method is called
+:::
+:::{.block}
+## Callback function
+A callback function is also known as an **event handler** because it
+handles the event that occurs when the user clicks the button.
+:::
+::::
+:::: {.column width=66%}
+- **`Button` widget**: widget that the user can click to cause an action
+  to take place
+  - When creating a button you can specify:
+    - Text to appear on the face of the button
+    - A **callback function**
+
+\vspace{0.4in}
+
+\begin{figure}
+\includegraphics[scale=0.8]{figures/ch13-fig-13-20-button}
+\label{fig:ch13-20-button}
+\caption{Example of a tkinter Button \parencite[pg.671]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Info Dialog Boxes
+
+::: columns
+:::: {.column width=66%}
+- **Info dialog box**: a dialog box that shows information to the user
+  - Format for creating an info dialog box:
+  - `import tkinter.messagebox` module
+   - `tkinter.messagebox.showinfo(title, message)`
+    - `title` is displayed in the dialog box's title bar
+    - `message` is an informational string displayed in the main part
+      of the dialog box
+::::
+:::: {.column width=33%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch13-fig-13-21-info-dialog}
+\label{fig:ch13-21-info-dialog}
+\caption{Example of a tkinter messagebox info dialog box \parencite[pg.671]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Creating a Quit Button
+
+- **`Quit` button**: closes the program when the user clicks it
+- To create a quit button in Python `tkinter`:
+  - Create a `Button` widget
+  - Set the root widget's `destroy()` method as the callback function
+  - When the user clicks the button the `destroy()` method is called
+    and the program ends
+
+# Getting Input with the `Entry` Widget
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## `Entry` Widget
+An `Entry` widget is a rectangular area that the user can type input
+into.  You use the `Entry` widget's `get()` method to retrieve the data
+that has been typed into the widget.
+:::
+\begin{figure}
+\includegraphics[scale=0.4]{figures/ch13-fig-13-25-entry-widget}
+\label{fig:ch13-25-entry-widget}
+\caption{Example of entry widget and result dialog \parencite[pg.675]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- **`Entry` widget**: rectangular area that the user can type text into
+  - Used to gather input in a GUI program
+  - Typically followed by a button for submitting the data
+    - The button's callback function retrieves the data from the `Entry`
+      widget and processes it
+  - **`Entry` widget's `get()` method**: used to retrieve the data from
+    an `Entry` widget
+    - Returns a string
+::::
+:::
+
+# Using Labels as Output Fields
+
+::: columns
+:::: {.column width=33%}
+::: {.block}
+## `StringVar` and `Label`
+When a `StringVar` object is associated with a `Label` widget, the 
+`Label` widget displays any data that is stored in the `StringVar`
+object.
+:::
+\vspace{0.25in}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch13-fig-13-27-stringvar-label}
+\label{fig:ch13-27-stringvar-label}
+\caption{Example of StringVar used to dynamically display result in a Label \parencite[pg.678]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=66%}
+- Can use `Label` widgets to dynamically display output
+  - Used to replace info dialog box
+  - Create empty `Label` widget in main window, and write code that
+    displays desired data in the label when a button is clocked
+
+- **`StringVar` class**: `tkinter` module class that can be used along
+  with a `Label` widget to display data
+  - Create `StringVar` object then create `Label` widget and associate
+    it with the `StringVar` object
+  - Subsequently, any value stored in the `StringVar` object will
+    automatically be displayed in the `Label` widget
+::::
+:::
+
 # Summary
 
-- pont1
-- point2
+- A `Frame` is a container that holds other widgets.  You use `Frames`
+  in most GUI frameworks to organize the widgets in a window (GUI layout)
+- A `Button` widget is a user clickable item that can be used to generate events
+- A **callback function** or an **event handler** are called asynchronously by the
+  GUI event loop when events happen.
+  - For example you can associate a callback function to be called when a button press even
+    occurs.
+- Dialog boxes, like the `tkinter` `messagebox` are useful for popping up information for
+  users.
+- The `Entry` widget provides a basic ability to enter user text in a `tkinter` GUI application
+  - Can use the `get()` method of the `Entry` object to get the text
+  - Can then convert to types like `int` or `float` using built-in Python methods
+- In `tkinter` a `StringVar` can be used in combination with a `Label` to
+  dynamically display output generated by the GUI application.
 
 
 # References
