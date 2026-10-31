@@ -43,6 +43,7 @@
         "prewritten",
         "printbibliography",
         "pytest",
+        "Radiobuttons",
         "randint",
         "randrange",
         "rstrip",

@@ -1,0 +1,229 @@
+---
+title: "Ch 13: Radio Buttons, List Boxes and Canvas Drawing"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Fall 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Radio Buttons
+
+::: columns
+:::: {.column width=33%}
+::: {.block}
+## Radio Buttons
+Radio buttons normally appear in groups of two or more, and allow the
+user to select one of several possible options.  Check buttons, which
+may appear alone or in groups, allow the user to make yes/no or on/off
+selections.
+:::
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch13-fig-13-32-radiobutton}
+\label{fig:ch13-32-radiobutton}
+\caption{An example of a mutually exclusive Radiobutton \parencite[pg.684]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=66%}
+- **Radio button**: small circle that appears filled in when it is
+  selected, and appears empty when it is deselected
+  - Useful when you want the user to select one choice from several possible options
+- **`Radiobutton` widgets**: created using `tkinter` module's `Radiobutton` class
+  - `Radiobutton` widgets are mutually exclusive
+  - Only one radio button in a container may be selected at any given time
+
+- **`IntVar` class**: a `tkinter` module class that can be used along with
+  `Radiobutton` widgets
+  - Steps for use:
+    - Associate group of `Radiobutton` widgets with the same `IntVar` object
+    - Assign unique integer to each `Radiobutton`
+    - When a `Radiobutton` widget is selected, its unique integer is stored
+      in the `IntVar` object
+  - Can be used to select a default radio button
+::::
+:::
+
+# Using Callback Functions with Radiobuttons
+
+- You can specify a callback function with `Radiobutton` widgets
+  - Provide an argument `command=self.my_method` when creating the
+    `Radiobutton` widget
+  - The command will execute immediately when the radio button is selected
+  - Replaces the need for a user to click OK or submit before determining
+    which `Radiobutton` is selected
+
+# Check Buttons
+
+- **Check button**: small box with a label appearing next to it, check
+  mark indicates when it is selected
+  - User is allowed to select any or all of the check buttons that are
+    displayed in a group
+  - Not mutually exclusive
+- **`Checkbutton` widgets**: created using `tkinter` module's `Checkbutton` class
+  - Associate different `IntVar` object with each `Checkbutton` widget
+
+# `Listbox` Widgets
+
+::: columns
+:::: {.column width=50%}
+- A `Listbox` widget displays a list of items and allows the user to select an
+  item from the list.
+  - Can be mutually exclusive or not
+  - Easier to dynamically change list of options to select than a radio or 
+    check box
+- Specify the size of a `Listbox`:
+  - The `height` of a `Listbox` will determine number of lines it will display
+  - The `width` of a `Listbox` is number of characters, so `width=30` has a listbox that can display 30 characters
+::::
+:::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.6]{figures/ch13-fig-13-36-listbox}
+\label{fig:ch13-36-listbox}
+\caption{An example of a tkinter Listbox widget \parencite[pg.691]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# `Listbox` Retrieving the Selected Item(s)
+
+::: columns
+:::: {.column width=50%}
+- The `curselection()` method returns a tuple containing the indexes of the
+  items that are currently selected in the `Listbox`
+  - If no item is selected, the tuple will be empty
+  - If an item is selection and mode is `BROWSE` or `SINGLE` the tuple
+    will contain only 1 element
+  - If the mode is `EXTENDED` or `MULTIPLE` the tuple can contain multiple
+    elements
+- Once you have the index of the selected item, you can use the `get()`
+  method to retrieve
+- The `get()` method accepts an integer index as its argument and returns
+  the item that is located at that index in the `Listbox`
+::::
+:::: {.column width=50%}
+\tiny
+| **Mode**           | **Description**                                                                  |
+| ------------------ | -------------------------------------------------------------------------------- |
+| `tkinter.BROWSE`   | The user can select one item at a time.  If drags item under cursor is selected. |
+| `tkinter.EXTENDED` | The user can select a group of adjacent items by clicking and dragging.          |
+| `tkinter.MULTIPLE` | Multiple items can be selected.  Click selects / unselects items in list.        |
+| `tkinter.SINGLE`   | The user can select one item at a time by clicking in the list.                  |
+
+Table: Listbox selection modes
+::::
+:::
+
+# Listboxes and Callback Functions
+
+- You can optionally bind a callback function to a `Listbox`
+- When the user clicks an item in the `Listbox` the callback function
+  is immediately executed
+- Example callback function:
+  - You must provide a parameter to accept an event object as an argument
+  - To bind the `show_item` function to the `listbox widget:
+    `self.listbox.bind(`<<ListboxSelect>>`, self.show_item)`
+  - Once done, the `show_item` function will execute whenever the user
+    clicks an item in the `listbox` widget
+
+# Adding Vertical and Horizontal Scrollbars to a `Listbox`
+
+1. Create the outer frame to hold the inner frame and the horizontal scrollbar
+2. Pack the outer frame
+3. Create the inner frame to hold the `Listbox` and the vertical scrollbar
+4. Pack the inner frame
+5. Create a `Listbox` inside the inner frame
+6. Pack the `Listbox` to the left side of the inner frame
+7. Create a vertical scrollbar inside the inner frame
+8. Pack the scrollbar ro the right side of the inner frame
+9. Create the horizontal scrollbar inside the outer frame
+
+# Drawing Shapes with the Canvas Widget
+
+::: columns
+:::: {.column width=40%}
+::: {.block}
+## Canvas Widget
+The `Canvas` widget provides methods for drawing simple shapes, such as
+lines, rectangle, ovals, polygons, and so on.
+:::
+\begin{figure}
+\includegraphics[scale=0.47]{figures/ch13-fig-13-45-canvas-coordinates}
+\label{fig:ch13-45-canvas-coordinates}
+\caption{Various pixel locations in a 640 by 480 pixel sized window \parencite[pg.710]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=60%}
+- The `Canvas` widget is a blank, rectangular area that allows you to
+  draw simple 2D shapes
+- You can use the `Canvas` widget's **screen coordinate system** to specify
+  the location of  your graphics
+- The coordinates of the pixel in the upper-left corner of the screen are `(0, 0)`
+  - The `X` coordinates increase from left to right
+  - The `Y` coordinates increase from top to bottom
+
+- The `Canvas` widget has numerous methods for drawing graphical shapes on the surface of the widget
+  - `create_line()`
+  - `create_rectangle()`
+  - `create_oval()`
+  - `create_arc()`
+  - `create_polygon()`
+  - `create_text()`
+::::
+:::
+
+# Example of Drawing with the Canvas Widget
+
+Look at the examples in `code/ch13`:
+
+- `draw_line.py()`
+- `draw_multi_line.py()`
+- `draw_square.py()`
+- `draw_ovals.py()`
+- `draw_arc.py()`
+- `draw_polygon().py`
+- `draw_text().py` 
+
+# Summary
+
+- A `Radiobutton` allows for one choice of several possible options (mutually exclusive)
+  - Can use `IntVar` to get and select default for selected `Radiobutton`
+- A `Checkbutton` allows for multiple choice among several possible options (not mutually exclusive)
+- A `Listbox` displays textual list, and can be used for single or multiple choice
+  - Can be more flexible than radio buttons or list boxes, can build dynamically
+  - Adding scrollbars to `tkinter` elements can be a bit tricky...
+- The `Canvas` widget provides a canvas that you can draw arbitrary geometric shapes on
+  - Methods with support for lines, rectangles, ovals, polygons, text on the canvas 
+
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

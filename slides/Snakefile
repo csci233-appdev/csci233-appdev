@@ -36,6 +36,7 @@ rule all:
 			 "ch12-1_3-recursion.pdf", \
 			 "ch13-1_3-gui-tkinter.pdf", \
 			 "ch13-4_7-frames-buttons-text.pdf", \
+			 "ch13-8_10-radiobutton-listbox-canvas.pdf", \
 			]
 
 rule pmd_to_md:

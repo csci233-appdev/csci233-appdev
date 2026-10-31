@@ -1,0 +1,27 @@
+# This program demonstrates the Canvas widget.
+import tkinter
+
+
+class MyGUI:
+    def __init__(self):
+        # Create the main window.
+        self.main_window = tkinter.Tk()
+        self.main_window.title('Canvas line Demo')
+
+        # Create the Canvas widget.
+        self.canvas = tkinter.Canvas(self.main_window, width=200, height=200)
+
+        # Draw two lines.
+        self.canvas.create_line(0, 0, 199, 199)
+        self.canvas.create_line(199, 0, 0, 199)
+
+        # Pack the canvas.
+        self.canvas.pack()
+
+        # Start the mainloop.
+        self.main_window.mainloop()
+
+
+# Create an instance of the MyGUI class.
+if __name__ == '__main__':
+    my_gui = MyGUI()
