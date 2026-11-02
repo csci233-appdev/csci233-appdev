@@ -2,7 +2,7 @@
 title: "Ch 13: Graphical User Interface (GUI) Programming and tkinter Module"
 subtitle: "Application Program Development"
 author: Derek Harter
-date:  Summer 2026
+date:  Fall 2026
 theme: Madrid
 colorlinks: true
 linkcolor: gray
@@ -126,7 +126,7 @@ Table: Some `tkinter` widgets
 
 # Using the Python `tkinter` Module (3 of 3)
 
-- Programs that use `tkinter` do not always run reliable under IDLE (or in containers).
+- Programs that use `tkinter` do not always run reliably under IDLE (or in containers).
   - For best results run them from the operating system command prompt
   - For containers, may need to ensure that external display of gui widgets (X windows config) is configured properly
 - Most programmers take an object-oriented approach when writing GUI programs
@@ -213,8 +213,10 @@ Table: Some `tkinter` widgets
   to interact with and cause things to happen
   - This requires an **event-loop** with callbacks to handle GUI interface interactions
 - The `tkinter` module provides basic GUI elements and is available in the base Python packaging system
+  - There is a more modern set of themed user interface components that is part of the base tkinter
+    [See tkinter.ttk](https://docs.python.org/3/library/tkinter.ttk.html#module-tkinter.ttk) \parencite{tkinter-docs-2026}
   - But there are more modern looking extensions, see [customtkinter](https://customtkinter.tomschimansky.com/)
-    \parencite{customtkinter-docs-2026} for example
+    \parencite{customtkinter-docs-2026} 
 - Most programmers prefer to take an object-oriented approach when writing a GUI program
   - For Python `tkinter` this usually means creating GUI elements in `__init__` method
   - as well as usually starting the main event loop after GUI elements are created

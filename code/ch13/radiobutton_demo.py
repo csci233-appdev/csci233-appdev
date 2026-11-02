@@ -7,6 +7,8 @@ class MyGUI:
     def __init__(self):
         # Create the main window.
         self.main_window = tkinter.Tk()
+        self.main_window.option_add('*Font', 'Arial 24')
+        self.main_window.tk.call('tk', 'scaling', 2.0)
 
         # Display a title.
         self.main_window.title('Radio Button Demo')
@@ -27,14 +29,17 @@ class MyGUI:
         self.rb1 = tkinter.Radiobutton(self.top_frame,
                                        text='Option 1',
                                        variable=self.radio_var,
+                                       indicatoron=1,
                                        value=1)
         self.rb2 = tkinter.Radiobutton(self.top_frame,
                                        text='Option 2',
                                        variable=self.radio_var,
+                                       indicatoron=1,
                                        value=2)
         self.rb3 = tkinter.Radiobutton(self.top_frame,
                                        text='Option 3',
                                        variable=self.radio_var,
+                                       indicatoron=1,
                                        value=3)
 
         # Pack the Radiobuttons.

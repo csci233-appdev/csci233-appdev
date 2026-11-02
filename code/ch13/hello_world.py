@@ -1,10 +1,13 @@
 # This program displays a label with text.
 import tkinter
 
+
 class MyGUI:
     def __init__(self):
         # Create the main window widget.
         self.main_window = tkinter.Tk()
+        self.main_window.option_add('*Font', 'Arial 24')
+        self.main_window.tk.call('tk', 'scaling', 2.0)
 
         # Display a title.
         self.main_window.title('Hello World (label)')
@@ -18,6 +21,7 @@ class MyGUI:
 
         # Enter the tkinter main loop.
         self.main_window.mainloop()
+
 
 # Create an instance of the MyGUI class.
 if __name__ == '__main__':

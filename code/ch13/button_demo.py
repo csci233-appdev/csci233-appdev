@@ -4,10 +4,13 @@
 import tkinter
 import tkinter.messagebox
 
+
 class MyGUI:
     def __init__(self):
         # Create the main window widget.
         self.main_window = tkinter.Tk()
+        self.main_window.option_add('*Font', 'Arial 24')
+        self.main_window.tk.call('tk', 'scaling', 2.0)
 
         # Display a title.
         self.main_window.title('Button Demo')
@@ -30,7 +33,9 @@ class MyGUI:
     # for the Button widget.
     def do_something(self):
         # Display an info dialog box.
-        tkinter.messagebox.showinfo('Response', 'Thanks for clicking the button.')
+        tkinter.messagebox.showinfo(
+            'Response', 'Thanks for clicking the button.')
+
 
 # Create an instance of the MyGUI class.
 if __name__ == '__main__':

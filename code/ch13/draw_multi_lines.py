@@ -6,6 +6,8 @@ class MyGUI:
     def __init__(self):
         # Create the main window.
         self.main_window = tkinter.Tk()
+        self.main_window.option_add('*Font', 'Arial 24')
+        self.main_window.tk.call('tk', 'scaling', 2.0)
         self.main_window.title('Canvas multi-line Demo')
 
         # Create the Canvas widget.
