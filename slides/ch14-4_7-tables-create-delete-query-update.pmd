@@ -1,0 +1,107 @@
+---
+title: "Ch 14: Creating and Deleting Tables, Querying Updating and Deleting Rows"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Fall 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Creating a Table
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Create and Delete Table
+
+To create a table in a database, you use the SQL statement
+`CREATE TABLE`.  To delete a table, you use the SQL statement
+`DROP TABLE`
+:::
+```{python, evaluate=False}
+  conn = sqlite3.connect('inventory.db')
+  cur = conn.cursor()
+  sql = '''CREATE TABLE Inventory
+                  (ItemID INTEGER PRIMARY KEY NOT NULL,
+                    ItemName TEXT,
+                    Price REAL)'''
+  cur.execute(sql)
+  cur.commit
+  conn.close()
+
+
+```
+::::
+:::: {.column width=50%}
+- To add a table, use the SQL statement `CREATE TABLE TableName (Col1 DataType1, Col2 DataType2, ...)`
+- To designate a column as the primary key, use the `PRIMARY KEY` constraint after the column's data type
+- The `NOT NULL` constraint specifies that a column cannot be left empty
+- Can use `IF NOT EXISTS` clause 
+::::
+:::
+
+# Deleting a Table
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Create and Delete Table
+
+To create a table in a database, you use the SQL statement
+`CREATE TABLE`.  To delete a table, you use the SQL statement
+`DROP TABLE`
+:::
+```{python, evaluate=False}
+  conn = sqlite3.connect('inventory.db')
+  cur = conn.cursor()
+  sql = '''DROP TABLE Inventory'''
+  cur.execute(sql)
+  cur.commit
+  conn.close()
+
+
+```
+::::
+:::: {.column width=50%}
+- To delete a table use the `DROP TABLE` STATEMENT
+- Can use `IF EXISTS` to avoid errors
+::::
+:::
+
+
+# Summary
+
+- point
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

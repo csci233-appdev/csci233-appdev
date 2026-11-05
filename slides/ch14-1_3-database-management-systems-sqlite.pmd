@@ -1,0 +1,255 @@
+---
+title: "Ch 14: Introduction to Database Management Systems (DBMS) and SQLite"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Fall 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# Database Management Systems
+
+::: columns
+:::: {.column width=40%}
+::: {.block}
+## DBMS
+A database management system (DBMS) is software that manages large
+collections of data.
+:::
+\begin{figure}
+\includegraphics[scale=0.066]{figures/ch14-fig-14-1-dbms-python-interaction}
+\label{fig:ch14-1-dbms-python-interaction}
+\caption{A Python application interacting with a DBMS, which manipulates data \parencite[pg.740]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=60%}
+- Storing data in traditional files has its limits
+  - well suited for applications that store only a small amount of data
+  - not practical for applications that must store a large amount of data
+  - simple operations become cumbersome and inefficient as data increases
+- A **database management system** (DBMS) is software that is
+  designed to work with large amounts of data in an efficient and organized manner
+  - Data is stored using the DBMS
+  - Applications written in Python (or other languages) communicate with the DBMS
+    rather than manipulate data directly
+  - DBMS carries out instructions and sends the results back to the application
+::::
+:::
+
+# SQL and SQLite
+
+::: columns
+:::: {.column width=50%}
+SQL stands for **structured query language**
+
+\vspace{0.15in}
+- A standard language for working with database management systems
+- Not used as a general programming language
+- Consists of several key words, used to construct statements
+  - SQL statements are strings passed from the application to the DBMS
+    using API method calls
+  - Serve as instructions for the DBMS to carry out operations on its data
+::::
+:::: {.column width=50%}
+In our class assignments we use the `SQLite` database management system
+
+- It is easy to use
+- It is automatically installed with Python in a module named `sqlite3`
+- Use this import statement
+
+\vspace{0.25in}
+```python
+import sqlite3
+```
+::::
+:::
+
+
+# Tables, Rows and Columns
+
+::: columns
+:::: {.column width=60%}
+::: {.block}
+## Database Organization
+Data that is stored in a database is organized into tables.  Tables
+are composed of rows of items, with columns of individual pieces of data.
+:::
+\begin{figure}
+\includegraphics[scale=0.12]{figures/ch14-fig-14-2-database-table}
+\label{fig:ch14-2-database-table}
+\caption{Names and phone numbers stored in a table \parencite[pg.742]{gaddis-2021}}
+\end{figure}
+::::
+:::: {.column width=40%}
+- A DBMS stores data in a **database**
+- A database is organized into one or more **tables**
+- Each table holds a collection of related data, organized into **rows**
+  and **columns**
+  - A **row** is a complete set of data about a single item, divided into columns
+  - Each **column** is an individual piece of data about the item
+::::
+:::
+
+# Column Data Types (1 of 2)
+
+- When you create a database table, you must specify a data type for each
+  column.
+  - These are not Python data types, they are specific to the DBMS
+
+| SQLite Data Type | Description         | Corresponding Python Type |
+| ---------------- | ------------------- | ------------------------- |
+| `NULL`           | Unknown value       | `None`                    |
+| `INTEGER`        | Integer number      | `int`                     |
+| `REAL`           | Real number         | `float`                   |
+| `TEXT`           | String              | `str`                     |
+| `BLOB`           | Binary Large Object | Can be any object         |
+
+
+# Column Data Types (2 of 2)
+
+Here is a brief summary of each of these data types:
+
+- `NULL` - The NULL data type can be used when the value is unknown or missing.
+  Python reads a `NULL` column value into memory, the value is converted to `None`.
+- `INTEGER` - The `INTEGER` data type holds a signed integer value.  When Python
+  reads an `INTEGER` column value into memory, the value is converted to an `int` value.
+- `REAL` - The `REAL` data type holds a real number.  When Python reads a `REAL`
+  column value into memory, the value is converted to a `float` value.
+- `BLOB` - The `BLOB` data types holds an object of any type.  For example, it can hold
+  an array, or an image.  When Python reads a `BLOB` column value into memory,
+  the value is converted to a `bytes` object, which is an immutable sequence of bytes.
+
+# Primary Keys
+
+::: columns
+:::: {.column width=30%}
+## Primary Key
+Database tables usually have a **primary key**, which is a column
+that can be used to identify a specific row.
+::::
+:::: {.column width=70%}
+- A **primary key** is a column that holds a **unique** value for each row in
+  in a database table
+- The primary key is used to identify a specific row
+- Example employee table:
+  - A table stores employee data, and one of the columns holds 
+    employee ID numbers, which uniquely identify a single employee in the database
+  - Because each employee's ID number is unique, this column can be used
+    as the primary key
+::::
+:::
+
+# Identity Columns
+
+Sometimes the data you want to store in a table does not contain any unique
+attributes that can be used as a primary key.
+
+- An **identity column** is a column that contains unique values that are generated
+  by the DBMS
+- Identity columns typically contain integers that are autoincremented
+- When a table does not have a column that contains unique values, an
+  identity column can be created and used as the primary key
+
+**Note**: when adding a row that has an identity column in SQLite, you can explicitly
+provide a value for the identity column.  If you provide a value that is already used
+the DBMS will throw an exception.  
+
+# Allowing Null Values
+
+- If a column contains no data, it is said to be null
+- Sometimes this is OK
+- However a primary key can never be null
+- You can apply a constraint to a column to prevent it from being null
+
+# Database Connections
+
+::: columns
+:::: {.column width=40%}
+::: {.block}
+## Database Connection
+
+Before you can work with a database, you must connect to the database.
+When you are finished working with the database, you must close the
+connection.
+:::
+Typical process of using an SQLite database:
+
+\vspace{0.15in}
+```
+Connect to the database
+Get a cursor for database
+Perform operations on database
+Commit changes to database
+Close connection to database
+```
+::::
+:::: {.column width=60%}
+\begin{figure}
+\includegraphics[scale=0.11]{figures/ch14-fig-14-3-database-connection}
+\label{fig:ch14-3-database-connection}
+\caption{Typical steps to connect and disconnect a database \parencite[pg.742]{gaddis-2021}}
+\end{figure}
+::::
+:::
+
+# Passing SQL Statements to the DBMS
+
+To execute an SQL statement on an SQLite database:
+
+- Construct a string that holds the SQL statement
+- Pass the string to the `Cursor` object's `execute()` method
+
+```{python, evaluate=False}
+cur.execute(SQLstring)
+```
+
+# Summary
+
+- A database management system or DBMS is software that manages large collections
+  of data in an efficient and organized manner
+  - Applications communicate with the DBMS rather than manipulate data directly
+  - DBMS carries out instructions and sends the results back to the application
+- SQL or **structured query language** is a standard language for executing commands
+  to manipulate data and communicate with a DBMS
+  - SQLite is an example of a light weight implementation of a DBMS that uses SQL
+- Data that is stored in a database is organized into tables
+  - A row is a complete set of data about a single item
+  - Each column is an individual piece of data about the item
+- Columns must have a specified DBMS data type associated with it
+- A **primary key** is a column that holds a **unique** value for each row in a database table
+  - It is used to identify a specific row in a table
+- To work with a database, you first connect to it, create a cursor to execute commands with, commit
+  changes, then close the connection when done
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

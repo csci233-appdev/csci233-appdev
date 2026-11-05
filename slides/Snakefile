@@ -37,6 +37,8 @@ rule all:
 			 "ch13-1_3-gui-tkinter.pdf", \
 			 "ch13-4_7-frames-buttons-text.pdf", \
 			 "ch13-8_10-radiobutton-listbox-canvas.pdf", \
+			 "ch14-1_3-database-management-systems-sqlite.pdf", \
+			 "ch14-4_7-tables-create-delete-query-update.pdf", \
 			]
 
 rule pmd_to_md:
