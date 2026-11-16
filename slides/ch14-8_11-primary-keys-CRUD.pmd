@@ -1,0 +1,274 @@
+---
+title: "Ch 14: More about Primary Keys and CRUD Operations"
+subtitle: "Application Program Development"
+author: Derek Harter
+date:  Fall 2026
+theme: Madrid
+colorlinks: true
+linkcolor: gray
+filecolor: gray
+urlcolor: blue
+citecolor: blue
+
+section-titles: false
+toc: false
+toc_depth: 2
+output: 
+	beamer_presentation:
+    keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[width=0.71in]{figures/etamu-logo}}
+  - \title [Python Assignments]{Python Assignments}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=green, filecolor=green}
+  - \usepackage[percent]{overpic}
+---
+
+
+# More About Primary Keys
+
+::: columns
+:::: {.column width=30%}
+:::{.block}
+## Primary Key
+A primary key uniquely identifies each row in a table.  In SQLite, each table
+has an `INTEGER` identity column named `RowID`.  If you create a column that is an 
+`INTEGER PRIMARY KEY` in a table, that column becomes an alias for the `RowId`
+column.  A composite key is a key that is created by combining two or more existing
+columns.
+:::
+::::
+:::: {.column width=66%}
+- General rules to remember about primary keys:
+  - Primary keys must hold a value, they cannot be `NULL`
+  - Each row's primary key value must be unique.  No two rows in a table
+    can have the same primary key
+  - A table can have only one primary key.  However multiple columns can be combined to
+    create a composite key
+- The `RowID` column in SQLite
+  - Tables in SQLite automatically have an `INTEGER` column named `RowId`
+  - The `RowId` column is autoincremented
+- Integer Primary Keys in SQLite
+  - When you designate a column as an `INTEGER PRIMARY KEY`, that column becomes an alias
+    for the `RowID` column
+::::
+:::
+
+# Primary Keys Other than `INTEGER`
+
+You can designate any type of column as the primary key
+
+```{python, evaluate=False}
+CREATE TABLE Employees (EmployeeID TEXT PRIMARY KEY NOT NULL,
+                       Name TEXT,
+                       PayRate REAL)
+```
+
+- Be sure to use the `NOT NULL` constraint with primary keys
+- When using a non-integer primary key in SQLite, you must provide the
+  value for the primary key when inserting rows
+- When inserting rows, be sure to assign a unique, non-null value to the
+  primary key column 
+
+# Composite Keys
+
+- You can combine two or more columns to create a composite key
+- Sometimes this is necessary in order to have unique values in the
+  primary key
+
+```{python, evaluate=False}
+CREATE TABLE Classrooms (RoomNumber INTEGER NOT NULL,
+                         Building TEXT NOT NULL,
+                         Seats INTEGER,
+                         PRIMARY KEY(RoomNumber, Building))
+```
+
+# Handling Database Exceptions in SQLite
+
+- The `sqlite3` module defines an exception named `Error` that is thrown
+  any time a database error occurs
+- It is a good practice to write database code inside of a `try / except`
+  statement that catches possible exceptions
+- (`exception_handling.py`)
+
+# CRUD Operations
+
+::: columns
+:::: {.column width=30%}
+::: {.block}
+## CRUD Operations
+The four basic operations of a database application are Create, Read
+Update and Delete
+:::
+::::
+:::: {.column width=66%}
+- **Create** The process of creating a new set of data in the database.  It
+  is achieved with an SQL `INSERT` statement
+- **Read** The process of reading an existing set of data from the database.
+  it is achieved with and SQL `SELECT` statement
+- **Update** The process of changing, or updating, and existing set of data in
+  the database.  It is achieved with an SQL `UPDATE` statement
+- **Delete** The process of deleting a set of data from the database.  It is
+  achieved with an SQL `DELETE` statement
+::::
+:::
+
+# Relational Data (1 of 3)
+
+::: columns
+:::: {.column width=30%}
+::: {.block}
+## Relational Data
+In a relational database, a column from one table can be associated with
+a column from other tables.  This association creates a relationship between
+tables.
+:::
+::::
+:::: {.column width=66%}
+- Relational design can reduce duplicated data within a database
+- Duplication of data can lead to problems
+  - Wasted storage space
+  - Can lead to inconsistent and conflicting data stored in the database
+::::
+:::
+
+# Relational Data (2 of 3)
+
+- For example, the following table contains duplicated data
+  - Duplicate department strings and city strings
+
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch14-fig-14-6-duplicate-employee-data}
+\label{fig:ch14-6-duplicate-employee-data}
+\caption{Example of employee data with duplicated information \parencite[pg.796]{gaddis-2021}}
+\end{figure}
+
+# Relational Data (3 of 3)
+
+- In a relational design we would separate the data into multiple tables
+
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch14-fig-14-7-entity-relationship-diagram}
+\label{fig:ch14-7-entity-relationship-diagram}
+\caption{Entity relationship diagram \parencite[pg.798]{gaddis-2021}}
+\end{figure}
+
+- When a row is added to the `Employees` table:
+  - Instead of storing a department name string, we store `DepartmentID`
+  - Also instead of city name string, store `LocationID`
+
+# Foreign Keys
+
+- A foreign key is a column in one table that references a primary key in
+  another table
+- When a row is added to the `Employees` table, the value stored in the
+  `DepartmentID` column must match a value already stored in the `DepartmentID` column
+  of the `Departments` table
+  - This creates a relationship between the `Employees` table and the `Departments` table
+- Likewise there is a foreign key relationship between `Employees` and `Locations`
+
+# Entity Relationship Diagrams
+
+- In the figure, 1 means *one* and $\infty$ means *many*
+- $1 - \infty$ indicates a **one to many** relationship
+- $\infty - 1$ indicates a **many to one** relationship
+
+\begin{figure}
+\includegraphics[scale=0.25]{figures/ch14-fig-14-7-entity-relationship-diagram}
+\label{fig:ch14-7-entity-relationship-diagram}
+\caption{Entity relationship diagram \parencite[pg.798]{gaddis-2021}}
+\end{figure}
+
+
+# Creating Foreign Keys in SQL (1 of 2)
+
+- When creating the `Employees` table, we use the `FOREIGN KEY` table
+  constraints to designate the foreign keys:
+
+```{python, evaluate=False}
+CREATE TABLE Departments (DepartmentID INTEGER PRIMARY KEY NOT NULL,
+                          DepartmentName TEXT)
+CREATE TABLE Locations (LocationID INTEGER PRIMARY KEY NOT NULL,
+                        City TEXT)
+CREATE TABLE Employees (EmployeeID INTEGER PRIMARY KEY NOT NULL,
+                        Name TEXT,
+                        Position TEXT,
+                        DepartmentID INTEGER,
+                        LocationID INTEGER,
+                        FOREIGN KEY(DepartmentID) REFERENCES
+                           Departments(DepartmentID),
+                        FOREIGN KEY(LocationID) REFERENCES
+                           Locations(LocationID))
+```
+
+# Creating Foreign Keys in SQL (2 of 2)
+
+- The `FOREIGN KEY` constraint ensures referential integrity between two tables
+- When a row is inserted into the `Employees` table, a check is performed to make sure:
+  - The `DepartmentID` column contains a valid value from the `Departments` table
+  - The `LocationID` column contains a valid value from the `Locations` table
+- Enabling Foreign Key Enforcement in SQLite:
+  - By default, SQLite does not enforce the integrity of foreign keys
+  - To enable foreign key enforcement, use this statement:
+
+```{python, evaluate=False}
+cur.execute('PRAGMA foreign_keys=ON')
+```
+
+# Foreign Keys (more to remember)
+
+When working with relational data, remember:
+
+- When inserting a new row to a table, each foreign key in that row must contain valid
+  data from that table that it references
+- When updating a row that has a foreign key, you must not change a foreign key to an
+  invalid value
+- You cannot delete a row if that row is currently referenced by rows in other tables
+
+# Retrieving Columns from Multiple Tables in a `SELECT` Statement
+
+- To retrieve columns from multiple tables in a `SELECT` statement, use the
+  columns' fully qualified names: `TableName.ColumnName`
+
+```{python, evaluate=False}
+SELECT
+   Employees.Name,
+   Departments.DepartmentName,
+   Locations.City
+FROM
+   Employees, Departments, Locations
+WHERE
+   Employees.DepartmentID == Departments.DepartmentID AND
+   Employees.LocationID == Locations.LocationID
+```
+
+# Summary
+
+- A **primary key** uniquely identifies each row in a table
+  - Must hold a value, cannot be `NULL`
+  - Must be unique, no two rows in a table can have the same primary key
+  - A table can only have 1 primary key
+  - You can use columns that are not `INTEGER` values as keys, and can combine
+    (composite) multiple columns to create unique keys
+- All database applications are composed of CRUD operations
+  **C**reate, **R**ead, **U**pdate, **D**elete    
+- **DO NOT Duplicate Data** in database tables
+  - Wasted storage space...
+  - But actually the real problem is can lead to inconsistent and conflicting data stored in the database
+- Instead of duplication, create separate tables and define **foreign keys** between them
+  - A foreign key is a column in one table that references a primary key in another table
+
+# References
+\tiny
+\printbibliography
+
+::: columns
+:::: {.column width=50%}
+::::
+:::: {.column width=50%}
+::::
+:::
+

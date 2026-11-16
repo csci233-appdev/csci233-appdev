@@ -39,6 +39,7 @@ rule all:
 			 "ch13-8_10-radiobutton-listbox-canvas.pdf", \
 			 "ch14-1_3-database-management-systems-sqlite.pdf", \
 			 "ch14-4_7-tables-create-delete-query-update.pdf", \
+			 "ch14-8_11-primary-keys-CRUD.pdf", \
 			]
 
 rule pmd_to_md:
