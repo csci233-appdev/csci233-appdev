@@ -47,7 +47,7 @@ To create a table in a database, you use the SQL statement
                     ItemName TEXT,
                     Price REAL)'''
   cur.execute(sql)
-  cur.commit
+  cur.commit()
   conn.close()
 
 
@@ -77,7 +77,7 @@ To create a table in a database, you use the SQL statement
   cur = conn.cursor()
   sql = '''DROP TABLE Inventory'''
   cur.execute(sql)
-  cur.commit
+  cur.commit()
   conn.close()
 
 
@@ -89,10 +89,382 @@ To create a table in a database, you use the SQL statement
 ::::
 :::
 
+# Adding Data to a Table
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Adding Data to a Table
+
+You use the `INSERT` statement in SQL to insert a new row into a table.
+:::
+```{python, evaluate=False}
+conn = sqlite3.connect('inventory.db')
+cur = conn.cursor()
+cur.execute('''INSERT INTO Inventory (ItemName, Price)
+               VALUES ("Screwdriver", 4.99)''')
+cur.execute('''INSERT INTO Inventory (ItemName, Price)
+               VALUES ("Hammer", 12.99)''')
+cur.execute('''INSERT INTO Inventory (ItemName, Price)
+               VALUES ("Vice Grips", 14.99)''')
+conn.commit()
+conn.close()
+```
+::::
+:::: {.column width=50%}
+- If you omit the value of an `INTEGER PRIMARY KEY` SQLite will provide an auto-generated
+  value for that column
+
+::::
+:::
+
+
+# Inserting the Value of a Variable
+
+- You can insert the value of a variable into an SQL statement (`execute()`)
+  by using question-mark placeholders:
+
+```{python, evaluate=False}
+item_name = "Wrench"
+price = 16.99
+cur.execute('''INSERT INTO Inventory (ItemName, Price)
+               VALUES (?, ?)''',
+              (item_name, price))
+```
+
+# Watch Out for SQL Injection Attacks
+
+::: columns
+:::: {.column width=50%}
+::: {.alert}
+## Watch Out
+For security reasons **never** use string concatenation to insert input 
+directly into an SQL statement.
+:::
+```{python, evaluate=False}
+# WARNING! Do NOT write code like this!
+name = input('Enter the item name: ')
+price = float(input('Enter the price: '))
+cur.execute('INSERT INTO Inventory (ItemName, Price) ' +
+            'VALUES ("' + name + '", ' + str(price) + ')')
+```
+
+```{python, evaluate=False}
+# WARNING! Do NOT write code like this!
+name = input('Enter the item name: ')
+price = float(input('Enter the price: '))
+cur.execute(f'INSERT INTO Inventory (ItemName, Price) ' +
+            f'VALUES ("{name}", {price})')
+```
+::::
+:::: {.column width=50%}
+- Also you should never insert user input into an SQL statement using f-string
+  placeholders, as shown
+::::
+:::
+
+# Querying Data with the SQL `SELECT` Statement (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## `SELECT` Statement
+The `SELECT` statement is used in SQL to retrieve data from a database.
+:::
+```{python, evaluate=False}
+conn = sqlite3.connect('chocolate.db')
+cur = conn.cursor()
+
+cur.execute('SELECT Description, RetailPrice FROM Products')
+results = cur.fetchall()
+
+for row in results:
+    print(f'{row[0]:30} {row[1]:5}')
+
+conn.close()
+```
+::::
+:::: {.column width=50%}
+- Can retrieve specific columns (attributes) by specifying in the select statement
+- The `*` character can be used to retrieve all columns in the table
+- The `fetchall()` method returns a list containing all rows that result from a 
+  `SELECT` statement
+::::
+:::
+
+# Querying Data with the SQL `SELECT` Statement (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## `SELECT` Statement
+The `SELECT` statement is used in SQL to retrieve data from a database.
+:::
+```{python, evaluate=False}
+conn = sqlite3.connect('chocolate.db')
+cur = conn.cursor()
+
+cur.execute('SELECT Description, RetailPrice FROM Products')
+results = cur.fetchone()
+
+while (row != None):
+    print(f'{row[0]:30} {row[1]:5}')
+    row = cur.fetchone()
+
+conn.close()
+```
+::::
+:::: {.column width=50%}
+- Can retrieve specific columns (attributes) by specifying in the select statement
+- The `*` character can be used to retrieve all columns in the table
+- The `fetchone()` method returns only one row each time it is called, as a tuple
+::::
+:::
+
+# Specifying Search Criteria with the `WHERE` Clause
+
+
+- The `WHERE` clause can be used with the `SELECT` statement to specify 
+  search criteria
+- When you use the `WHERE` clause, only the rows that meet the search criteria
+  will be returned
+
+Example: 
+
+- The first part of the statement specifies that we want every column
+- The `WHERE` clause specifies we want only particular rows that meet criteria
+
+```{python, evaluate=False}
+SELECT * FROM Products where RetailPrice > 10.00
+```
+
+# SQL Relational Operators
+
+| Operator | Meaning                  |
+|----------|--------------------------|
+| >        | Greater-Than             |
+| <        | Less-Than                |
+| >=       | Greater-Then or Equal-To |
+| <=       | Less-Than or Equal-To    |
+| ==       | Equal-To                 |
+| =        | Equal-To                 |
+| !=       | Not Equal-To             |
+| <>       | Not Equal-To             |
+
+Table: SQL Relational Operators
+
+# SQL Logical Operators: `AND` `OR` `NOT`
+
+- SQL Logical Operators: `AND`, `OR`, `NOT`
+
+```{python, evaluate=False}
+SELECT * FROM Products
+WHERE UnitCost > 3.00 AND UnitsOnHand < 100
+```
+
+```{python, evaluate=False}
+SELECT * FROM Products
+WHERE UnitCost > 10.00 OR UnitsOnHand < 50
+```
+
+```{python, evaluate=False}
+SELECT * FROM Products
+WHERE NOT RetailPrice > 5.0
+```
+
+# Using the `LIKE` Operator
+
+- The `LIKE` operator can be used to search for a substring
+- Example:
+```{python evaluate=False}
+SELECT * FROM Products
+WHERE Description LIKE "%Bar%"
+```
+- The `%` symbol is used as a wildcard for multiple characters
+- This statement returns all the rows in which the `Description` column
+  contains the string "Bar"
+
+# Sorting the Results of a `SELECT` Query
+
+- Use the `ORDER BY` clause to sort the results of a `SELECT` query
+
+Example 1:
+```{python, evaluate=False}
+SELECT * FROM Products ORDER BY RetailPrice
+```
+- This statement will retrieve all the rows in the `Products` table, ordered
+  by `RetailPrice`
+- The list will be sorted in ascending order on the `RetailPrice` column
+
+Example 2:
+```{python, evaluate=False}
+SELECT * FROM Products
+WHERE RetailPrice > 9.00
+ORDER BY RetailPrice
+```
+
+# Aggregate Functions
+
+- The `AVG` function calculates the average value in a particular column
+```{python, evaluate=False}
+SELECT AVG(RetailPrice) FROM Products
+WHERE UnitsOnHand > 0
+```
+
+- The `SUM` function calculates the sum of a columns values
+```{python, evaluate=False}
+SELECT SUM(UnitsOnHand) FROM Products
+WHERE RetailPrice > 100.00
+```
+
+- The `MIN` and `MAX` functions calculate the minimum and maximum values found in a column
+```{python, evaluate=False}
+SELECT MIN(RetailPrice) FROM Products
+SELECT MAX(RetailPrice) FROM Products
+```
+
+- The `COUNT` function can be used to determine the number of rows in a table
+```{python, evaluate=False}
+SELECT COUNT(*) FROM Products
+WHERE RetailPrice < 10.00
+```
+
+# Updating Existing Rows (1 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Updating Rows
+You use the `UPDATE` statement in SQL to change the value of an existing
+row.
+:::
+```{python, evaluate=False}
+cur.execute('''UPDATE Products
+               SET RetailPrice = 13.99
+               WHERE Description == "Chocolate Truffles")
+conn.commit()
+```
+::::
+:::: {.column width=50%}
+- This statement will update all rows in `Products` table, in which 
+  `Description` is "Chocolate Truffles"
+- For each of those rows, it will change the `RetailPrice` column to 13.99
+::::
+:::
+
+# Updating Existing Rows (2 of 2)
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Updating Rows
+You use the `UPDATE` statement in SQL to change the value of an existing
+row.
+:::
+```{python, evaluate=False}
+cur.execute('''UPDATE Products
+               SET RetailPrice = 8.99,
+                   UnitsOnHand = 100
+               WHERE Description LIKE "%Bar%")
+conn.commit()
+```
+::::
+:::: {.column width=50%}
+- This statement will update all rows in the `Products` table in which the
+  `Description` contains "Bar"
+- For each of those rows, it will change the `RetailPrice` column and the
+  `UnitsOnHand` column
+::::
+:::
+
+# Deleting Rows
+
+::: columns
+:::: {.column width=50%}
+::: {.block}
+## Deleting Rows
+You use the `DELETE` statement in SQL to delete rows from a
+table.
+:::
+```{python, evaluate=False}
+cur.execute('''DELETE FROM Products
+               WHERE Description LIKE "%Bar"''')
+conn.commit()
+```
+::::
+:::: {.column width=50%}
+- This statement will delete all rows in the `Products` table in which
+  the `ProductId` ends with "Bar"
+::::
+:::
+
+# Warning Don't Leave out WHERE Clause
+
+::: columns
+:::: {.column width=30%}
+:::{.alert}
+## Missing `WHERE` Clause
+Don't leave out the `WHERE` clause when updating or deleting rows unless
+you want to affect all rows in the database!
+:::
+::::
+:::: {.column width=66%}
+For example this SQL statements sets `UnitsOnHand` to 0 in every row of the
+  `Products` table:
+
+\vspace{0.1in}
+```{python, evaluate=False}
+UPDATE Products SET UnitsOnHand = 0
+```
+
+\vspace{0.25in}
+This statement deletes every row in the Products table
+
+\vspace{0.1in}
+```{python, evaluate=False}
+DELETE FROM Products
+```
+::::
+:::
+
+# Determining the Number of Rows Affected
+
+- To determine the number of rows updated, get the value of the `Cursor`
+  object's `rowcount` attribute
+
+\vspace{0.25in}
+```{python, evaluate=False}
+cur.execute('''UPDATE Products
+               SET UnitsOnHand = 0
+               WHERE Description LIKE "%Bar%"''')
+conn.commit()
+rows_updated = cur.rowcount
+```
+
+\vspace{0.1in}
+```{python, evaluate=False}
+cur.execute('''DELETE Products
+               WHERE Description LIKE "%Chips%"''')
+conn.commit()
+rows_updated = cur.rowcount
+```
+
+
 
 # Summary
 
-- point
+- Create tables using the sql `CREATE TABLE` statement
+  - It is important to have a primary key in a database table 
+- Delete tables using `DROP TABLE` sql statement
+- Add new rows to table using `INSERT` statement
+- Use the `SELECT` statement to retrieve items from a database table
+  - Can specify search criteria using `WHERE` clause when selecting or deleting
+- Use the `UPDATE` statement to modify existing database row items
+- Use the `DELETE` statement to delete rows from a database
+- Watch out for SQL Injection attacks, generally should not insert invalidate strings
+  (using concatenation or string formatting) into database.
+- SQL statements are free form, which means tabs, newlines and spaces between
+  keywords are ignored.
 
 # References
 \tiny

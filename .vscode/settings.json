@@ -18,6 +18,8 @@
         "endswith",
         "etamu",
         "etamustudent",
+        "fetchall",
+        "fetchone",
         "filecolor",
         "gaddis",
         "Harter",
